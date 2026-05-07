@@ -16,12 +16,13 @@ import { getFirestore, doc, getDoc, setDoc }
 
 // ─── PASTE YOUR FIREBASE CONFIG HERE ───────────────────────────────────────
 const firebaseConfig = {
-  apiKey:            "AIzaSyDcOPAZersAFR9YVDgwpO41uMa4TUcOL-E",
-  authDomain:        "auth-a99e7.firebaseapp.com",
-  projectId:         "auth-a99e7",
-  storageBucket:     "auth-a99e7.firebasestorage.app",
+  apiKey: "AIzaSyDcOPAZersAFR9YVDgwpO41uMa4TUcOL-E",
+  authDomain: "auth-a99e7.firebaseapp.com",
+  projectId: "auth-a99e7",
+  storageBucket: "auth-a99e7.firebasestorage.app",
   messagingSenderId: "299303403763",
-  appId:             "1:299303403763:web:e4ce89bfdaa5197e287786"
+  appId: "1:299303403763:web:e4ce89bfdaa5197e287786",
+  measurementId: "G-8QFQLB48KK"
 };
 // ───────────────────────────────────────────────────────────────────────────
 
@@ -30,7 +31,6 @@ const auth = getAuth(app);
 const db   = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-// expose to window so non-module scripts can call them
 window._fb = { auth, db, provider, signInWithPopup, signOut, onAuthStateChanged, doc, getDoc, setDoc };
 window.dispatchEvent(new Event('firebase-ready'));
 </script>
@@ -63,9 +63,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ══════════════════════════════════════
-   FIREBASE CONFIG SCREEN
-══════════════════════════════════════ */
+/* CONFIG SCREEN */
 #config-screen {
   position: fixed; inset: 0;
   background: var(--bg);
@@ -94,107 +92,24 @@ body {
   background: linear-gradient(90deg, transparent, var(--accent), var(--green), transparent);
 }
 
-.config-logo {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 5px;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
+.config-logo { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 5px; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
+.config-title { font-size: 24px; font-weight: 800; color: var(--white); margin-bottom: 6px; }
+.config-sub { font-size: 13px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
 
-.config-title {
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--white);
-  margin-bottom: 6px;
-}
-
-.config-sub {
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 28px;
-  line-height: 1.6;
-}
-
-.config-step {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 14px;
-  align-items: flex-start;
-}
-
-.step-num {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: rgba(0,212,255,0.1);
-  border: 1px solid rgba(0,212,255,0.4);
-  color: var(--accent);
-  font-size: 10px;
-  font-family: 'Space Mono', monospace;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.step-text {
-  font-size: 12px;
-  color: var(--text);
-  line-height: 1.6;
-  font-family: 'Space Mono', monospace;
-}
-
+.config-step { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+.step-num { width: 22px; height: 22px; border-radius: 50%; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.4); color: var(--accent); font-size: 10px; font-family: 'Space Mono', monospace; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.step-text { font-size: 12px; color: var(--text); line-height: 1.6; font-family: 'Space Mono', monospace; }
 .step-text a { color: var(--accent); text-decoration: none; }
 .step-text a:hover { text-decoration: underline; }
+.step-text code { background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; font-size: 11px; color: var(--green); }
 
-.step-text code {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  padding: 1px 5px;
-  font-size: 11px;
-  color: var(--green);
-}
+.config-divider { height: 1px; background: var(--border); margin: 20px 0; }
+.config-notice { font-size: 11px; color: var(--muted); font-family: 'Space Mono', monospace; line-height: 1.7; background: var(--bg2); border-left: 2px solid var(--accent); border-radius: 0 6px 6px 0; padding: 10px 14px; }
 
-.config-divider {
-  height: 1px;
-  background: var(--border);
-  margin: 20px 0;
-}
-
-.config-notice {
-  font-size: 11px;
-  color: var(--muted);
-  font-family: 'Space Mono', monospace;
-  line-height: 1.7;
-  background: var(--bg2);
-  border-left: 2px solid var(--accent);
-  border-radius: 0 6px 6px 0;
-  padding: 10px 14px;
-}
-
-.btn-got-it {
-  width: 100%;
-  margin-top: 20px;
-  padding: 13px;
-  background: linear-gradient(135deg, var(--accent), #0088bb);
-  color: #000;
-  border: none;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 700;
-  font-family: 'Syne', sans-serif;
-  letter-spacing: 2px;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: all 0.2s;
-}
-
+.btn-got-it { width: 100%; margin-top: 20px; padding: 13px; background: linear-gradient(135deg, var(--accent), #0088bb); color: #000; border: none; border-radius: 10px; font-size: 13px; font-weight: 700; font-family: 'Syne', sans-serif; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; transition: all 0.2s; }
 .btn-got-it:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(0,212,255,0.25); }
 
-/* ══════════════════════════════════════
-   LOGIN SCREEN
-══════════════════════════════════════ */
+/* LOGIN SCREEN */
 #login-screen {
   position: fixed; inset: 0;
   background: var(--bg);
@@ -205,13 +120,10 @@ body {
   flex-direction: column;
 }
 
-/* animated grid background */
 #login-screen::before {
   content: '';
   position: absolute; inset: 0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 40px 40px;
   opacity: 0.4;
   pointer-events: none;
@@ -249,122 +161,26 @@ body {
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
 }
 
-.login-mark {
-  width: 48px; height: 48px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,255,136,0.1));
-  border: 1px solid rgba(0,212,255,0.3);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
-  margin-bottom: 20px;
-}
+.login-mark { width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,255,136,0.1)); border: 1px solid rgba(0,212,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 20px; }
+.login-headline { font-size: 26px; font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 8px; }
+.login-tagline { font-size: 13px; color: var(--muted); margin-bottom: 36px; font-family: 'Space Mono', monospace; line-height: 1.5; }
 
-.login-headline {
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1.1;
-  margin-bottom: 8px;
-}
-
-.login-tagline {
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 36px;
-  font-family: 'Space Mono', monospace;
-  line-height: 1.5;
-}
-
-.google-btn {
-  width: 100%;
-  padding: 14px 20px;
-  background: var(--white);
-  color: #1a1a1a;
-  border: none;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 700;
-  font-family: 'Syne', sans-serif;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  transition: all 0.2s;
-  letter-spacing: 0.3px;
-}
-
-.google-btn:hover {
-  background: #e8f0fe;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-}
-
+.google-btn { width: 100%; padding: 14px 20px; background: var(--white); color: #1a1a1a; border: none; border-radius: 12px; font-size: 14px; font-weight: 700; font-family: 'Syne', sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; transition: all 0.2s; letter-spacing: 0.3px; }
+.google-btn:hover { background: #e8f0fe; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
 .google-btn:active { transform: translateY(0); }
+.google-icon { width: 20px; height: 20px; flex-shrink: 0; }
 
-.google-icon {
-  width: 20px; height: 20px;
-  flex-shrink: 0;
-}
+.login-divider { display: flex; align-items: center; gap: 12px; margin: 24px 0; }
+.login-divider::before, .login-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.login-divider span { font-size: 10px; font-family: 'Space Mono', monospace; color: var(--muted); letter-spacing: 2px; white-space: nowrap; }
 
-.login-divider {
-  display: flex; align-items: center; gap: 12px;
-  margin: 24px 0;
-}
+.features { display: flex; flex-direction: column; gap: 8px; }
+.feature-row { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--muted); font-family: 'Space Mono', monospace; }
+.feature-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 
-.login-divider::before,
-.login-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
+.login-error { background: rgba(255,69,96,0.1); border: 1px solid rgba(255,69,96,0.3); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--red); font-family: 'Space Mono', monospace; margin-bottom: 16px; display: none; }
 
-.login-divider span {
-  font-size: 10px;
-  font-family: 'Space Mono', monospace;
-  color: var(--muted);
-  letter-spacing: 2px;
-  white-space: nowrap;
-}
-
-.features {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.feature-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  color: var(--muted);
-  font-family: 'Space Mono', monospace;
-}
-
-.feature-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-}
-
-.login-error {
-  background: rgba(255,69,96,0.1);
-  border: 1px solid rgba(255,69,96,0.3);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 12px;
-  color: var(--red);
-  font-family: 'Space Mono', monospace;
-  margin-bottom: 16px;
-  display: none;
-}
-
-/* ══════════════════════════════════════
-   SETUP SCREEN (after Google login)
-══════════════════════════════════════ */
+/* SETUP SCREEN */
 #setup-screen {
   position: fixed; inset: 0;
   background: var(--bg);
@@ -373,14 +189,14 @@ body {
   justify-content: center;
   z-index: 900;
   flex-direction: column;
+  overflow-y: auto;
+  padding: 20px;
 }
 
 #setup-screen::before {
   content: '';
   position: absolute; inset: 0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 40px 40px;
   opacity: 0.3;
 }
@@ -397,169 +213,44 @@ body {
   overflow: hidden;
 }
 
-.setup-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 10%; right: 10%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--green), transparent);
-}
+.setup-card::before { content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--green), transparent); }
 
-.user-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 28px;
-  padding: 12px 14px;
-  background: var(--bg2);
-  border-radius: 10px;
-  border: 1px solid var(--border);
-}
-
-.user-avatar {
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--border);
-}
-
-.user-avatar-placeholder {
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--green));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 800; color: #000;
-  flex-shrink: 0;
-}
-
+.user-row { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; padding: 12px 14px; background: var(--bg2); border-radius: 10px; border: 1px solid var(--border); }
+.user-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); }
+.user-avatar-placeholder { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--green)); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: #000; flex-shrink: 0; }
 .user-info { flex: 1; }
 .user-name { font-size: 13px; font-weight: 700; color: var(--white); }
 .user-email { font-size: 11px; color: var(--muted); font-family: 'Space Mono', monospace; }
+.verified-badge { font-size: 10px; font-family: 'Space Mono', monospace; padding: 3px 8px; border-radius: 4px; background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.3); }
 
-.verified-badge {
-  font-size: 10px;
-  font-family: 'Space Mono', monospace;
-  padding: 3px 8px;
-  border-radius: 4px;
-  background: rgba(0,255,136,0.1);
-  color: var(--green);
-  border: 1px solid rgba(0,255,136,0.3);
-}
+.setup-title { font-size: 22px; font-weight: 800; color: var(--white); margin-bottom: 6px; }
+.setup-sub { font-size: 12px; color: var(--muted); font-family: 'Space Mono', monospace; margin-bottom: 28px; line-height: 1.6; }
 
-.setup-title {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--white);
-  margin-bottom: 6px;
-}
-
-.setup-sub {
-  font-size: 12px;
-  color: var(--muted);
-  font-family: 'Space Mono', monospace;
-  margin-bottom: 28px;
-  line-height: 1.6;
-}
-
-.field-label {
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--muted);
-  text-transform: uppercase;
-  font-family: 'Space Mono', monospace;
-  margin-bottom: 7px;
-}
-
+.field-label { font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; font-family: 'Space Mono', monospace; margin-bottom: 7px; }
 .field-group { margin-bottom: 18px; }
 
-.field-input {
-  width: 100%;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 16px;
-  color: var(--text);
-  font-size: 13px;
-  font-family: 'Space Mono', monospace;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
+.field-input { width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; color: var(--text); font-size: 13px; font-family: 'Space Mono', monospace; outline: none; transition: border-color 0.2s; }
 .field-input:focus { border-color: var(--accent); }
 .field-input::placeholder { color: var(--muted); }
 select.field-input option { background: var(--bg2); }
 
-.env-toggle {
-  display: flex;
-  gap: 8px;
-}
+.env-toggle { display: flex; gap: 8px; }
+.env-btn { flex: 1; padding: 11px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 12px; font-family: 'Space Mono', monospace; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px; }
+.env-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.08); }
 
-.env-btn {
-  flex: 1;
-  padding: 11px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--muted);
-  font-size: 12px;
-  font-family: 'Space Mono', monospace;
-  cursor: pointer;
-  transition: all 0.2s;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+.btn-connect { width: 100%; margin-top: 8px; padding: 14px; background: linear-gradient(135deg, var(--accent), #009bcc); color: #000; border: none; border-radius: 12px; font-size: 13px; font-weight: 700; font-family: 'Syne', sans-serif; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; transition: all 0.2s; }
+.btn-connect:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(0,212,255,0.3); }
+.btn-connect:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-.env-btn.active {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: rgba(0,212,255,0.08);
-}
+.save-note { text-align: center; font-size: 11px; color: var(--muted); font-family: 'Space Mono', monospace; margin-top: 12px; }
 
-.btn-connect {
-  width: 100%;
-  margin-top: 8px;
-  padding: 14px;
-  background: linear-gradient(135deg, var(--accent), #009bcc);
-  color: #000;
-  border: none;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 700;
-  font-family: 'Syne', sans-serif;
-  letter-spacing: 2px;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: all 0.2s;
-}
+.setup-error { background: rgba(255,69,96,0.1); border: 1px solid rgba(255,69,96,0.3); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--red); font-family: 'Space Mono', monospace; margin-bottom: 14px; display: none; line-height: 1.6; }
 
-.btn-connect:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 28px rgba(0,212,255,0.3);
-}
+/* Debug info box */
+.debug-info { background: rgba(0,212,255,0.05); border: 1px solid rgba(0,212,255,0.2); border-radius: 8px; padding: 10px 14px; font-size: 11px; color: var(--muted); font-family: 'Space Mono', monospace; margin-bottom: 14px; display: none; line-height: 1.7; }
+.debug-info span { color: var(--accent); }
 
-.save-note {
-  text-align: center;
-  font-size: 11px;
-  color: var(--muted);
-  font-family: 'Space Mono', monospace;
-  margin-top: 12px;
-}
-
-.setup-error {
-  background: rgba(255,69,96,0.1);
-  border: 1px solid rgba(255,69,96,0.3);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 12px;
-  color: var(--red);
-  font-family: 'Space Mono', monospace;
-  margin-bottom: 14px;
-  display: none;
-}
-
-/* ══════════════════════════════════════
-   LOADING
-══════════════════════════════════════ */
+/* LOADING */
 #loading-overlay {
   position: fixed; inset: 0;
   background: rgba(7,9,13,0.88);
@@ -573,197 +264,50 @@ select.field-input option { background: var(--bg2); }
 
 #loading-overlay.show { display: flex; }
 
-.spinner {
-  width: 36px; height: 36px;
-  border: 2px solid var(--border);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-
+.spinner { width: 36px; height: 36px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.loading-label {
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  color: var(--accent);
-  letter-spacing: 3px;
-  animation: blink 1.2s ease-in-out infinite;
-}
-
+.loading-label { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 3px; animation: blink 1.2s ease-in-out infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-/* ══════════════════════════════════════
-   MAIN APP
-══════════════════════════════════════ */
+/* MAIN APP */
 #app { display: none; flex-direction: column; height: 100vh; }
 
-.topbar {
-  background: var(--panel);
-  border-bottom: 1px solid var(--border);
-  padding: 0 18px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
-}
-
-.logo {
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 2px;
-  white-space: nowrap;
-}
-
-.topbar-sep {
-  width: 1px; height: 24px;
-  background: var(--border);
-  flex-shrink: 0;
-}
+.topbar { background: var(--panel); border-bottom: 1px solid var(--border); padding: 0 18px; height: 52px; display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.logo { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: 2px; white-space: nowrap; }
+.topbar-sep { width: 1px; height: 24px; background: var(--border); flex-shrink: 0; }
 
 .pair-select-wrap { display: flex; align-items: center; gap: 8px; }
+.pair-select-wrap label { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; font-family: 'Space Mono', monospace; }
 
-.pair-select-wrap label {
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'Space Mono', monospace;
-}
-
-.topbar select {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text);
-  font-size: 12px;
-  font-family: 'Space Mono', monospace;
-  padding: 5px 10px;
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.2s;
-}
-
+.topbar select { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-size: 12px; font-family: 'Space Mono', monospace; padding: 5px 10px; outline: none; cursor: pointer; transition: border-color 0.2s; }
 .topbar select:focus { border-color: var(--accent); }
 
 .tf-btns { display: flex; gap: 3px; }
-
-.tf-btn {
-  padding: 4px 9px;
-  border-radius: 4px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--muted);
-  font-size: 10px;
-  font-family: 'Space Mono', monospace;
-  cursor: pointer;
-  transition: all 0.15s;
-  text-transform: uppercase;
-}
-
+.tf-btn { padding: 4px 9px; border-radius: 4px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 10px; font-family: 'Space Mono', monospace; cursor: pointer; transition: all 0.15s; text-transform: uppercase; }
 .tf-btn:hover { color: var(--accent); border-color: var(--accent); }
 .tf-btn.active { background: rgba(0,212,255,0.1); color: var(--accent); border-color: var(--accent); }
 
 .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
 
-.live-pill {
-  display: flex; align-items: center; gap: 6px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  background: rgba(0,255,136,0.08);
-  border: 1px solid rgba(0,255,136,0.2);
-}
-
-.live-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  animation: pulse 2s infinite;
-}
-
+.live-pill { display: flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.2); }
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+.live-txt { font-size: 10px; font-family: 'Space Mono', monospace; color: var(--green); letter-spacing: 1px; }
 
-.live-txt {
-  font-size: 10px;
-  font-family: 'Space Mono', monospace;
-  color: var(--green);
-  letter-spacing: 1px;
-}
-
-.current-price {
-  font-size: 17px;
-  font-weight: 700;
-  font-family: 'Space Mono', monospace;
-  color: var(--white);
-}
-
-.price-change {
-  font-size: 11px;
-  font-family: 'Space Mono', monospace;
-  padding: 3px 8px;
-  border-radius: 4px;
-}
-
+.current-price { font-size: 17px; font-weight: 700; font-family: 'Space Mono', monospace; color: var(--white); }
+.price-change { font-size: 11px; font-family: 'Space Mono', monospace; padding: 3px 8px; border-radius: 4px; }
 .price-change.pos { background: rgba(0,255,136,0.1); color: var(--green); }
 .price-change.neg { background: rgba(255,69,96,0.1); color: var(--red); }
 
-.topbar-avatar {
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--border);
-  cursor: pointer;
-}
+.topbar-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); cursor: pointer; }
+.topbar-avatar-placeholder { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--green)); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #000; cursor: pointer; flex-shrink: 0; }
 
-.topbar-avatar-placeholder {
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--green));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 800; color: #000;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.icon-btn {
-  padding: 5px 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: transparent;
-  color: var(--muted);
-  font-size: 10px;
-  font-family: 'Space Mono', monospace;
-  cursor: pointer;
-  transition: all 0.2s;
-  letter-spacing: 1px;
-}
-
+.icon-btn { padding: 5px 10px; border: 1px solid var(--border); border-radius: 6px; background: transparent; color: var(--muted); font-size: 10px; font-family: 'Space Mono', monospace; cursor: pointer; transition: all 0.2s; letter-spacing: 1px; }
 .icon-btn:hover { color: var(--red); border-color: var(--red); }
 
-.tabs {
-  display: flex;
-  background: var(--panel);
-  border-bottom: 1px solid var(--border);
-  padding: 0 18px;
-  flex-shrink: 0;
-}
-
-.tab {
-  padding: 10px 18px;
-  font-size: 11px;
-  font-family: 'Space Mono', monospace;
-  letter-spacing: 1px;
-  color: var(--muted);
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
+.tabs { display: flex; background: var(--panel); border-bottom: 1px solid var(--border); padding: 0 18px; flex-shrink: 0; }
+.tab { padding: 10px 18px; font-size: 11px; font-family: 'Space Mono', monospace; letter-spacing: 1px; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; text-transform: uppercase; white-space: nowrap; }
 .tab:hover { color: var(--text); }
 .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 
@@ -771,91 +315,34 @@ select.field-input option { background: var(--bg2); }
 .tab-panel { display: none; flex: 1; overflow: hidden; }
 .tab-panel.active { display: flex; }
 
-/* ── CHART TAB ── */
+/* CHART TAB */
 #tab-chart { flex-direction: row; }
-
 .chart-wrap { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+#chart-container { flex: 1; min-height: 0; position: relative; }
 
-#chart-container {
-  flex: 1; min-height: 0; position: relative;
-}
+.chart-status { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; color: var(--muted); font-family: 'Space Mono', monospace; font-size: 12px; pointer-events: none; }
 
-.chart-status {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  text-align: center;
-  color: var(--muted);
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  pointer-events: none;
-}
-
-.chart-overlay {
-  position: absolute; top: 12px; left: 12px;
-  display: flex; gap: 6px; z-index: 10; flex-wrap: wrap;
-}
-
-.zone-tag {
-  font-size: 10px;
-  font-family: 'Space Mono', monospace;
-  padding: 3px 8px;
-  border-radius: 3px;
-  letter-spacing: 1px;
-}
-
+.chart-overlay { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; z-index: 10; flex-wrap: wrap; }
+.zone-tag { font-size: 10px; font-family: 'Space Mono', monospace; padding: 3px 8px; border-radius: 3px; letter-spacing: 1px; }
 .zone-tag.supply { background: rgba(255,69,96,0.15); color: var(--red); border: 1px solid rgba(255,69,96,0.35); }
 .zone-tag.demand { background: rgba(0,255,136,0.12); color: var(--green); border: 1px solid rgba(0,255,136,0.35); }
 .zone-tag.ob { background: rgba(0,212,255,0.12); color: var(--accent); border: 1px solid rgba(0,212,255,0.35); }
 
-.sidebar {
-  width: 290px; flex-shrink: 0;
-  border-left: 1px solid var(--border);
-  background: var(--panel);
-  overflow-y: auto;
-  display: flex; flex-direction: column;
-}
-
+.sidebar { width: 290px; flex-shrink: 0; border-left: 1px solid var(--border); background: var(--panel); overflow-y: auto; display: flex; flex-direction: column; }
 .sidebar-section { border-bottom: 1px solid var(--border); padding: 14px; }
 
-.section-title {
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: var(--accent);
-  text-transform: uppercase;
-  font-family: 'Space Mono', monospace;
-  margin-bottom: 10px;
-  display: flex; align-items: center; gap: 8px;
-}
-
+.section-title { font-size: 9px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; font-family: 'Space Mono', monospace; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
 .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
 .ms-badges { display: flex; flex-wrap: wrap; gap: 5px; }
-
-.ms-badge {
-  font-size: 9px;
-  font-family: 'Space Mono', monospace;
-  padding: 3px 8px;
-  border-radius: 4px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
+.ms-badge { font-size: 9px; font-family: 'Space Mono', monospace; padding: 3px 8px; border-radius: 4px; letter-spacing: 1px; text-transform: uppercase; }
 .ms-badge.bull { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.3); }
 .ms-badge.bear { background: rgba(255,69,96,0.1); color: var(--red); border: 1px solid rgba(255,69,96,0.3); }
 .ms-badge.neutral { background: rgba(255,165,0,0.1); color: var(--yellow); border: 1px solid rgba(255,165,0,0.3); }
 
-.zone-item {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 8px 10px;
-  border-radius: 6px;
-  margin-bottom: 5px;
-  font-family: 'Space Mono', monospace;
-  font-size: 11px;
-}
-
+.zone-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; border-radius: 6px; margin-bottom: 5px; font-family: 'Space Mono', monospace; font-size: 11px; }
 .zone-item.supply-zone { background: rgba(255,69,96,0.06); border: 1px solid rgba(255,69,96,0.18); }
 .zone-item.demand-zone { background: rgba(0,255,136,0.06); border: 1px solid rgba(0,255,136,0.18); }
-
 .zone-item-label { color: var(--muted); font-size: 9px; margin-bottom: 2px; }
 .zone-item-price { color: var(--white); font-weight: 700; font-size: 11px; }
 .zone-type { font-size: 8px; padding: 2px 5px; border-radius: 3px; }
@@ -863,120 +350,52 @@ select.field-input option { background: var(--bg2); }
 .zone-type.d { background: rgba(0,255,136,0.2); color: var(--green); }
 
 .trade-card { background: var(--bg2); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; }
-
-.trade-header {
-  padding: 10px 14px;
-  display: flex; align-items: center; justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-}
-
+.trade-header { padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
 .trade-direction { font-size: 13px; font-weight: 700; font-family: 'Space Mono', monospace; letter-spacing: 2px; }
 .trade-direction.long { color: var(--green); }
 .trade-direction.short { color: var(--red); }
-
 .trade-conf { font-size: 10px; font-family: 'Space Mono', monospace; color: var(--muted); }
-
-.trade-row {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 6px 14px;
-  font-size: 11px; font-family: 'Space Mono', monospace;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-}
-
+.trade-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 14px; font-size: 11px; font-family: 'Space Mono', monospace; border-bottom: 1px solid rgba(255,255,255,0.04); }
 .trade-row:last-child { border-bottom: none; }
 .trade-row-label { color: var(--muted); }
 .trade-row-val { color: var(--white); font-weight: 700; }
 .trade-row-val.g { color: var(--green); }
 .trade-row-val.r { color: var(--red); }
-
 .rr-bar { padding: 8px 14px 12px; }
 .rr-label { font-size: 9px; color: var(--muted); font-family: 'Space Mono', monospace; margin-bottom: 5px; display: flex; justify-content: space-between; }
 .rr-track { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
 .rr-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--accent)); border-radius: 2px; }
 
-/* ── BACKTEST TAB ── */
+/* BACKTEST TAB */
 #tab-backtest { flex-direction: row; overflow: hidden; }
-
-.bt-left {
-  width: 320px; flex-shrink: 0;
-  border-right: 1px solid var(--border);
-  background: var(--panel);
-  overflow-y: auto;
-  padding: 18px;
-  display: flex; flex-direction: column; gap: 14px;
-}
-
+.bt-left { width: 320px; flex-shrink: 0; border-right: 1px solid var(--border); background: var(--panel); overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
 .bt-right { flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.bt-section-title { font-size: 9px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; font-family: 'Space Mono', monospace; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 
-.bt-section-title {
-  font-size: 9px; letter-spacing: 3px; color: var(--accent);
-  text-transform: uppercase; font-family: 'Space Mono', monospace;
-  margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
-}
-
-.strat-textarea {
-  width: 100%; min-height: 100px;
-  background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
-  color: var(--text); font-size: 11px; font-family: 'Space Mono', monospace;
-  padding: 12px; resize: vertical; outline: none; line-height: 1.7;
-  transition: border-color 0.2s;
-}
-
+.strat-textarea { width: 100%; min-height: 100px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 11px; font-family: 'Space Mono', monospace; padding: 12px; resize: vertical; outline: none; line-height: 1.7; transition: border-color 0.2s; }
 .strat-textarea:focus { border-color: var(--accent); }
 
-.strat-help {
-  font-size: 10px; color: var(--muted); font-family: 'Space Mono', monospace;
-  line-height: 1.8; background: var(--bg2); border-radius: 6px; padding: 10px 12px;
-  border-left: 2px solid var(--accent);
-}
-
+.strat-help { font-size: 10px; color: var(--muted); font-family: 'Space Mono', monospace; line-height: 1.8; background: var(--bg2); border-radius: 6px; padding: 10px 12px; border-left: 2px solid var(--accent); }
 .strat-help span { color: var(--accent); }
 
 .param-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
-
-.param-label {
-  font-size: 9px; letter-spacing: 1px; color: var(--muted);
-  text-transform: uppercase; font-family: 'Space Mono', monospace;
-}
-
-.param-input {
-  background: var(--bg2); border: 1px solid var(--border); border-radius: 6px;
-  color: var(--text); font-size: 12px; font-family: 'Space Mono', monospace;
-  padding: 8px 10px; outline: none; transition: border-color 0.2s;
-}
-
+.param-label { font-size: 9px; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; font-family: 'Space Mono', monospace; }
+.param-input { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-size: 12px; font-family: 'Space Mono', monospace; padding: 8px 10px; outline: none; transition: border-color 0.2s; }
 .param-input:focus { border-color: var(--accent); }
 
-.btn-run {
-  width: 100%; padding: 13px;
-  background: linear-gradient(135deg, var(--accent), #0099cc);
-  color: #000; border: none; border-radius: 10px;
-  font-size: 12px; font-weight: 700; font-family: 'Syne', sans-serif;
-  letter-spacing: 2px; cursor: pointer; transition: all 0.2s; text-transform: uppercase;
-}
-
+.btn-run { width: 100%; padding: 13px; background: linear-gradient(135deg, var(--accent), #0099cc); color: #000; border: none; border-radius: 10px; font-size: 12px; font-weight: 700; font-family: 'Syne', sans-serif; letter-spacing: 2px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
 .btn-run:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,212,255,0.3); }
 .btn-run:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-.bt-empty {
-  flex: 1; display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 10px; color: var(--muted);
-  font-family: 'Space Mono', monospace; font-size: 12px; text-align: center;
-}
+.bt-empty { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; color: var(--muted); font-family: 'Space Mono', monospace; font-size: 12px; text-align: center; }
 
 .results-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
-
-.stat-card {
-  background: var(--panel); border: 1px solid var(--border);
-  border-radius: 10px; padding: 14px; position: relative; overflow: hidden;
-}
-
+.stat-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px; position: relative; overflow: hidden; }
 .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
 .stat-card.gc::before { background: var(--green); }
 .stat-card.rc::before { background: var(--red); }
 .stat-card.bc::before { background: var(--accent); }
 .stat-card.yc::before { background: var(--yellow); }
-
 .stat-label { font-size: 9px; color: var(--muted); font-family: 'Space Mono', monospace; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
 .stat-value { font-size: 24px; font-weight: 800; font-family: 'Space Mono', monospace; line-height: 1; }
 .stat-value.gc { color: var(--green); }
@@ -1010,47 +429,21 @@ select.field-input option { background: var(--bg2); }
 </head>
 <body>
 
-<!-- FIREBASE CONFIG NOTICE (shown if config not filled) -->
+<!-- FIREBASE CONFIG NOTICE -->
 <div id="config-screen">
   <div class="config-box">
     <div class="config-logo">⬡ SMC Terminal</div>
     <div class="config-title">One-time Firebase Setup</div>
     <div class="config-sub">To enable Google login, add your free Firebase config to this file. Takes ~3 minutes.</div>
-
-    <div class="config-step">
-      <div class="step-num">1</div>
-      <div class="step-text">Go to <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a> → Create a project</div>
-    </div>
-    <div class="config-step">
-      <div class="step-num">2</div>
-      <div class="step-text"><b>Authentication</b> → Sign-in method → Enable <code>Google</code></div>
-    </div>
-    <div class="config-step">
-      <div class="step-num">3</div>
-      <div class="step-text"><b>Firestore Database</b> → Create database → Start in test mode</div>
-    </div>
-    <div class="config-step">
-      <div class="step-num">4</div>
-      <div class="step-text"><b>Project Settings</b> → Your apps → Add web app → Copy <code>firebaseConfig</code></div>
-    </div>
-    <div class="config-step">
-      <div class="step-num">5</div>
-      <div class="step-text">In this HTML file, replace <code>YOUR_FIREBASE_API_KEY</code> etc. with your actual values at the top of the &lt;script type="module"&gt; block</div>
-    </div>
-    <div class="config-step">
-      <div class="step-num">6</div>
-      <div class="step-text"><b>Authentication → Settings → Authorized domains</b> → Add your GitHub Pages URL: <code>yourusername.github.io</code></div>
-    </div>
-
+    <div class="config-step"><div class="step-num">1</div><div class="step-text">Go to <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a> → Create a project</div></div>
+    <div class="config-step"><div class="step-num">2</div><div class="step-text"><b>Authentication</b> → Sign-in method → Enable <code>Google</code></div></div>
+    <div class="config-step"><div class="step-num">3</div><div class="step-text"><b>Firestore Database</b> → Create database → Start in test mode</div></div>
+    <div class="config-step"><div class="step-num">4</div><div class="step-text"><b>Project Settings</b> → Your apps → Add web app → Copy <code>firebaseConfig</code></div></div>
+    <div class="config-step"><div class="step-num">5</div><div class="step-text">Replace <code>YOUR_FIREBASE_API_KEY</code> etc. in the &lt;script type="module"&gt; block at top</div></div>
+    <div class="config-step"><div class="step-num">6</div><div class="step-text"><b>Authentication → Settings → Authorized domains</b> → Add your domain / <code>localhost</code></div></div>
     <div class="config-divider"></div>
-
-    <div class="config-notice">
-      🔒 Your Capital.com API key is stored encrypted in Firestore under your Google account UID. Nobody else can access it.
-    </div>
-
-    <button class="btn-got-it" onclick="document.getElementById('config-screen').style.display='none'; document.getElementById('login-screen').style.display='flex';">
-      I've added my Firebase config →
-    </button>
+    <div class="config-notice">🔒 Your Capital.com API key is stored encrypted in Firestore under your Google account UID.</div>
+    <button class="btn-got-it" onclick="document.getElementById('config-screen').style.display='none'; document.getElementById('login-screen').style.display='flex';">I've added my Firebase config →</button>
   </div>
 </div>
 
@@ -1060,9 +453,7 @@ select.field-input option { background: var(--bg2); }
     <div class="login-mark">⬡</div>
     <div class="login-headline">SMC Trading<br>Terminal</div>
     <div class="login-tagline">Real-time analysis · Supply & Demand zones<br>SMC structure · Strategy backtesting</div>
-
     <div class="login-error" id="login-error"></div>
-
     <button class="google-btn" onclick="googleSignIn()">
       <svg class="google-icon" viewBox="0 0 48 48">
         <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
@@ -1073,9 +464,7 @@ select.field-input option { background: var(--bg2); }
       </svg>
       Continue with Google
     </button>
-
     <div class="login-divider"><span>WHAT YOU GET</span></div>
-
     <div class="features">
       <div class="feature-row"><div class="feature-dot"></div>Real-time Capital.com market data & live charts</div>
       <div class="feature-row"><div class="feature-dot"></div>SMC analysis — supply/demand zones, BOS, CHoCH</div>
@@ -1086,7 +475,7 @@ select.field-input option { background: var(--bg2); }
   </div>
 </div>
 
-<!-- SETUP (after Google login, first time or no saved config) -->
+<!-- SETUP -->
 <div id="setup-screen">
   <div class="setup-card">
     <div class="user-row">
@@ -1098,27 +487,22 @@ select.field-input option { background: var(--bg2); }
       </div>
       <div class="verified-badge">✓ VERIFIED</div>
     </div>
-
     <div class="setup-title">Connect Capital.com</div>
-    <div class="setup-sub">Your API key is saved to your Google account via Firestore.<br>You won't need to enter it again.</div>
-
+    <div class="setup-sub">Your credentials are saved to Firestore under your Google UID.<br>You won't need to enter them again.</div>
     <div class="setup-error" id="setup-error"></div>
-
+    <div class="debug-info" id="debug-info"></div>
     <div class="field-group">
       <div class="field-label">Capital.com API Key</div>
       <input type="password" class="field-input" id="setup-apikey" placeholder="Paste your API key here">
     </div>
-
     <div class="field-group">
       <div class="field-label">Account Identifier (Email)</div>
       <input type="text" class="field-input" id="setup-identifier" placeholder="your@email.com">
     </div>
-
     <div class="field-group">
       <div class="field-label">Password</div>
       <input type="password" class="field-input" id="setup-password" placeholder="Capital.com password">
     </div>
-
     <div class="field-group">
       <div class="field-label">Environment</div>
       <div class="env-toggle">
@@ -1126,8 +510,7 @@ select.field-input option { background: var(--bg2); }
         <button class="env-btn" id="env-live" onclick="setEnv('live')">🟢 LIVE</button>
       </div>
     </div>
-
-    <button class="btn-connect" onclick="doSetupConnect()">Save & Connect →</button>
+    <button class="btn-connect" id="connect-btn" onclick="doSetupConnect()">Save & Connect →</button>
     <div class="save-note">🔒 Saved securely to Firestore under your Google UID</div>
   </div>
 </div>
@@ -1135,7 +518,7 @@ select.field-input option { background: var(--bg2); }
 <!-- LOADING -->
 <div id="loading-overlay">
   <div class="spinner"></div>
-  <div class="loading-label">CONNECTING...</div>
+  <div class="loading-label" id="loading-label">CONNECTING...</div>
 </div>
 
 <!-- APP -->
@@ -1143,7 +526,6 @@ select.field-input option { background: var(--bg2); }
   <div class="topbar">
     <div class="logo">⬡ SMC</div>
     <div class="topbar-sep"></div>
-
     <div class="pair-select-wrap">
       <label>PAIR</label>
       <select id="pair-select" onchange="onPairChange()">
@@ -1158,9 +540,7 @@ select.field-input option { background: var(--bg2); }
         <option value="OIL_CRUDE">CRUDE OIL</option>
       </select>
     </div>
-
     <div class="topbar-sep"></div>
-
     <div class="tf-btns" id="tf-btns">
       <button class="tf-btn" onclick="setTF('MINUTE',this)">1M</button>
       <button class="tf-btn" onclick="setTF('MINUTE_5',this)">5M</button>
@@ -1169,9 +549,7 @@ select.field-input option { background: var(--bg2); }
       <button class="tf-btn" onclick="setTF('HOUR_4',this)">4H</button>
       <button class="tf-btn" onclick="setTF('DAY',this)">1D</button>
     </div>
-
     <button class="icon-btn" onclick="refreshChart()">↺ REFRESH</button>
-
     <div class="topbar-right">
       <div class="live-pill"><div class="live-dot"></div><div class="live-txt">LIVE</div></div>
       <div class="current-price" id="current-price">---</div>
@@ -1188,8 +566,6 @@ select.field-input option { background: var(--bg2); }
   </div>
 
   <div class="content">
-
-    <!-- CHART TAB -->
     <div class="tab-panel active" id="tab-chart">
       <div class="chart-wrap">
         <div id="chart-container">
@@ -1200,7 +576,6 @@ select.field-input option { background: var(--bg2); }
           <div class="chart-overlay" id="zone-tags"></div>
         </div>
       </div>
-
       <div class="sidebar">
         <div class="sidebar-section">
           <div class="section-title">Market Structure</div>
@@ -1221,7 +596,6 @@ select.field-input option { background: var(--bg2); }
       </div>
     </div>
 
-    <!-- BACKTEST TAB -->
     <div class="tab-panel" id="tab-backtest">
       <div class="bt-left">
         <div>
@@ -1285,10 +659,23 @@ const S = {
   smcData: null, liveInterval: null,
 };
 
-const BASE = () =>
-  S.env === 'demo'
-    ? 'https://demo-api-capital.backend.gbkfintech.com/api/v1'
-    : 'https://api-capital.backend.gbkfintech.com/api/v1';
+// ── IMPORTANT: Capital.com API endpoints ──
+// The demo and live base URLs for Capital.com REST API
+const BASES = {
+  demo: 'https://demo-api-capital.backend.gbkfintech.com/api/v1',
+  live: 'https://api-capital.backend.gbkfintech.com/api/v1'
+};
+
+// CORS proxy list - tried in order if direct call fails
+const CORS_PROXIES = [
+  '', // try direct first
+  'https://corsproxy.io/?',
+  'https://api.allorigins.win/raw?url=',
+];
+
+let currentProxyIndex = 0;
+
+const BASE = () => BASES[S.env] || BASES.demo;
 
 // ═══════════════════════════════════════════════════
 //  FIREBASE AUTH
@@ -1296,12 +683,9 @@ const BASE = () =>
 let FB = null;
 window.addEventListener('firebase-ready', () => { FB = window._fb; initAuth(); });
 
-// If config placeholder still present, show config screen, else show login
 window.addEventListener('DOMContentLoaded', () => {
-  // detect if firebase config is still placeholder
   setTimeout(() => {
     if (!FB) {
-      // Firebase module failed or config is placeholder
       document.getElementById('config-screen').style.display = 'flex';
     }
   }, 2000);
@@ -1309,15 +693,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function initAuth() {
   const { auth, onAuthStateChanged } = FB;
-  // Hide config screen (Firebase loaded fine)
   document.getElementById('config-screen').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       S.user = user;
-      showLoading(true);
-      // Try load saved Capital config
+      showLoading(true, 'LOADING...');
       const saved = await loadUserConfig(user.uid);
       showLoading(false);
       if (saved) {
@@ -1343,7 +725,6 @@ async function googleSignIn() {
   if (!FB) { errEl.textContent = 'Firebase not ready. Check your config.'; errEl.style.display = 'block'; return; }
   try {
     await FB.signInWithPopup(FB.auth, FB.provider);
-    // onAuthStateChanged handles the rest
   } catch(e) {
     errEl.textContent = 'Google sign-in failed: ' + e.message;
     errEl.style.display = 'block';
@@ -1404,7 +785,10 @@ async function doSetupConnect() {
   const identifier = document.getElementById('setup-identifier').value.trim();
   const password = document.getElementById('setup-password').value.trim();
   const errEl = document.getElementById('setup-error');
+  const dbgEl = document.getElementById('debug-info');
+  const btn = document.getElementById('connect-btn');
   errEl.style.display = 'none';
+  dbgEl.style.display = 'none';
 
   if (!apiKey || !identifier || !password) {
     errEl.textContent = 'Please fill in all fields.';
@@ -1413,50 +797,120 @@ async function doSetupConnect() {
 
   S.apiKey = apiKey; S.identifier = identifier;
   S.password = password; S.env = _selectedEnv;
+  btn.disabled = true;
+  btn.textContent = 'Connecting...';
 
-  showLoading(true);
-  try {
-    await capitalAuth();
-    // Save to Firestore
-    await saveUserConfig(S.user.uid, { apiKey, identifier, password, env: _selectedEnv });
-    hideAllScreens();
-    await launchApp();
-  } catch(e) {
-    errEl.textContent = 'Connection failed: ' + (e.message || 'Check credentials');
-    errEl.style.display = 'block';
-  } finally { showLoading(false); }
+  // Reset proxy index and try connecting
+  currentProxyIndex = 0;
+  let lastError = null;
+
+  for (let i = 0; i < CORS_PROXIES.length; i++) {
+    currentProxyIndex = i;
+    const proxyLabel = i === 0 ? 'direct' : CORS_PROXIES[i];
+    dbgEl.innerHTML = `<span>Attempt ${i+1}/${CORS_PROXIES.length}:</span> Trying ${proxyLabel}...`;
+    dbgEl.style.display = 'block';
+    try {
+      await capitalAuth();
+      // Success! Save to Firestore
+      await saveUserConfig(S.user.uid, { apiKey, identifier, password, env: _selectedEnv });
+      dbgEl.style.display = 'none';
+      btn.disabled = false;
+      btn.textContent = 'Save & Connect →';
+      hideAllScreens();
+      await launchApp();
+      return;
+    } catch(e) {
+      lastError = e;
+      console.warn(`Proxy ${i} failed:`, e.message);
+    }
+  }
+
+  // All proxies failed
+  btn.disabled = false;
+  btn.textContent = 'Save & Connect →';
+  dbgEl.style.display = 'none';
+
+  const msg = lastError?.message || 'Unknown error';
+  let hint = '';
+  if (msg.includes('401') || msg.includes('403')) hint = '\n\nHint: Check your API key and credentials. Make sure you selected the correct environment (DEMO/LIVE).';
+  else if (msg.includes('Failed to fetch') || msg.includes('NetworkError') || msg.includes('CORS')) hint = '\n\nHint: CORS issue. The Capital.com API may be blocking browser requests. Try using a browser extension like "CORS Unblock" or deploy to a server.';
+  else if (msg.includes('404')) hint = '\n\nHint: API endpoint not found. Check you selected DEMO vs LIVE correctly.';
+
+  errEl.style.whiteSpace = 'pre-wrap';
+  errEl.textContent = 'Connection failed: ' + msg + hint;
+  errEl.style.display = 'block';
 }
 
 // ═══════════════════════════════════════════════════
-//  CAPITAL.COM AUTH
+//  CAPITAL.COM API
 // ═══════════════════════════════════════════════════
 async function capitalAuth() {
-  await api('/session', {
+  const result = await api('/session', {
     method: 'POST',
-    body: JSON.stringify({ identifier: S.identifier, password: S.password, encryptedPassword: false }),
+    body: JSON.stringify({
+      identifier: S.identifier,
+      password: S.password,
+      encryptedPassword: false
+    }),
   });
+  return result;
 }
 
+// Smart API wrapper with CORS proxy fallback
 async function api(path, opts = {}) {
-  const headers = { 'Content-Type': 'application/json', 'X-CAP-API-KEY': S.apiKey };
+  const targetUrl = BASE() + path;
+  const headers = {
+    'Content-Type': 'application/json',
+    'X-CAP-API-KEY': S.apiKey
+  };
   if (S.cst) headers['CST'] = S.cst;
   if (S.xSec) headers['X-SECURITY-TOKEN'] = S.xSec;
 
-  const resp = await fetch(BASE() + path, { ...opts, headers });
-  if (!resp.ok) { const t = await resp.text().catch(()=>''); throw new Error(`${resp.status}: ${t}`); }
+  // Try current proxy first, then others
+  const proxiesToTry = [currentProxyIndex, ...CORS_PROXIES.map((_,i) => i).filter(i => i !== currentProxyIndex)];
 
-  const nc = resp.headers.get('CST'), ns = resp.headers.get('X-SECURITY-TOKEN');
-  if (nc) S.cst = nc;
-  if (ns) S.xSec = ns;
+  for (const proxyIdx of proxiesToTry) {
+    const proxy = CORS_PROXIES[proxyIdx];
+    const url = proxy ? proxy + encodeURIComponent(targetUrl) : targetUrl;
 
-  return resp.json();
+    try {
+      const resp = await fetch(url, {
+        ...opts,
+        headers,
+        mode: 'cors',
+      });
+
+      if (!resp.ok) {
+        const t = await resp.text().catch(() => '');
+        throw new Error(`${resp.status}: ${t}`);
+      }
+
+      // Remember working proxy
+      currentProxyIndex = proxyIdx;
+
+      const nc = resp.headers.get('CST');
+      const ns = resp.headers.get('X-SECURITY-TOKEN');
+      if (nc) S.cst = nc;
+      if (ns) S.xSec = ns;
+
+      return resp.json();
+    } catch (e) {
+      // If it's an auth error (not a network error), throw immediately
+      if (e.message && (e.message.includes('401') || e.message.includes('403'))) {
+        throw e;
+      }
+      // Otherwise try next proxy
+      if (proxyIdx === proxiesToTry[proxiesToTry.length - 1]) {
+        throw e; // last one, give up
+      }
+    }
+  }
 }
 
 // ═══════════════════════════════════════════════════
 //  LAUNCH APP
 // ═══════════════════════════════════════════════════
 async function launchApp() {
-  // Show user avatar in topbar
   const wrap = document.getElementById('topbar-avatar-wrap');
   if (S.user?.photoURL) {
     wrap.innerHTML = `<img class="topbar-avatar" src="${S.user.photoURL}" title="${S.user.displayName}">`;
@@ -1466,15 +920,25 @@ async function launchApp() {
   }
 
   document.getElementById('app').style.display = 'flex';
-  showLoading(true);
+  showLoading(true, 'AUTHENTICATING...');
   try {
     await capitalAuth();
+    showLoading(true, 'LOADING CHART...');
     await initChart();
     startLiveFeed();
   } catch(e) {
-    // Session expired? Let user re-auth via setup
+    showLoading(false);
+    console.error('Launch error:', e);
+    // Show setup screen again with error
     showSetupScreen(S.user);
-  } finally { showLoading(false); }
+    const errEl = document.getElementById('setup-error');
+    errEl.textContent = 'Session error: ' + e.message + '\n\nPlease re-enter your credentials.';
+    errEl.style.whiteSpace = 'pre-wrap';
+    errEl.style.display = 'block';
+    document.getElementById('app').style.display = 'none';
+    return;
+  }
+  showLoading(false);
 }
 
 // ═══════════════════════════════════════════════════
@@ -1517,18 +981,29 @@ async function fetchAndAnalyse() {
       low: p.lowPrice.bid, close: p.closePrice.bid,
     })).filter(c => c.time && c.open).sort((a,b) => a.time - b.time);
 
-    S.candles = candles;
-    S.candleSeries.setData(candles);
+    // Remove duplicate timestamps
+    const seen = new Set();
+    const unique = candles.filter(c => {
+      if (seen.has(c.time)) return false;
+      seen.add(c.time);
+      return true;
+    });
+
+    S.candles = unique;
+    S.candleSeries.setData(unique);
     document.getElementById('chart-status').style.display = 'none';
 
-    if (candles.length) {
-      const last = candles[candles.length-1], prev = candles[candles.length-2] || last;
+    if (unique.length) {
+      const last = unique[unique.length-1], prev = unique[unique.length-2] || last;
       updatePrice(last.close, prev.close);
     }
     runSMC();
   } catch(e) {
     document.getElementById('chart-status').innerHTML =
-      `<div style="color:var(--red);font-family:'Space Mono',monospace;font-size:12px">Error: ${e.message}</div>`;
+      `<div style="color:var(--red);font-family:'Space Mono',monospace;font-size:12px;padding:20px;text-align:center">
+        Error loading chart<br><span style="color:var(--muted);font-size:10px">${e.message}</span><br>
+        <button onclick="fetchAndAnalyse()" style="margin-top:12px;padding:6px 14px;background:var(--accent);color:#000;border:none;border-radius:6px;cursor:pointer;font-family:'Space Mono',monospace;font-size:10px">RETRY</button>
+      </div>`;
   }
 }
 
@@ -1540,14 +1015,12 @@ function runSMC() {
   const closes = c.map(x=>x.close), highs = c.map(x=>x.high), lows = c.map(x=>x.low), n = c.length;
   const cur = closes[n-1];
 
-  // Swing points
   const sH=[], sL=[];
   for(let i=5;i<n-5;i++) {
     if(highs[i]===Math.max(...highs.slice(i-5,i+6))) sH.push({i,p:highs[i],t:c[i].time});
     if(lows[i]===Math.min(...lows.slice(i-5,i+6))) sL.push({i,p:lows[i],t:c[i].time});
   }
 
-  // Supply (bearish OB)
   const supply=[];
   for(let i=10;i<n-3;i++) {
     const dn=closes[i+1]<c[i+1].open, mv=c[i+1].open-closes[i+1];
@@ -1555,7 +1028,6 @@ function runSMC() {
     if(dn&&mv>avgR*0.8&&c[i].close>c[i].open) supply.push({top:highs[i],bot:c[i].open,t:c[i].time,str:Math.min(100,Math.round(mv/avgR*50))});
   }
 
-  // Demand (bullish OB)
   const demand=[];
   for(let i=10;i<n-3;i++) {
     const up=closes[i+1]>c[i+1].open, mv=closes[i+1]-c[i+1].open;
@@ -1566,17 +1038,14 @@ function runSMC() {
   const nearSup = supply.filter(z=>z.bot>cur).sort((a,b)=>a.bot-b.bot).slice(0,3);
   const nearDem = demand.filter(z=>z.top<cur).sort((a,b)=>b.top-a.top).slice(0,3);
 
-  // BOS
   let bos=null;
   if(sH.length>=2) { const [a,b]=sH.slice(-2); bos=b.p>a.p?'BOS_BULL':'BOS_BEAR'; }
 
-  // Structure
   const ema20=calcEMA(closes,20), sl=ema20[n-1]-ema20[n-5];
   const structure=sl>0?'BULLISH':sl<0?'BEARISH':'RANGING';
 
   S.smcData = { nearSup, nearDem, bos, structure, cur, ema20 };
 
-  // Draw
   (S.priceLines||[]).forEach(pl=>{try{S.candleSeries.removePriceLine(pl);}catch(e){}});
   S.priceLines=[];
   nearSup.forEach(z=>{
@@ -1789,18 +1258,21 @@ function startLiveFeed() {
   clearInterval(S.liveInterval);
   S.liveInterval = setInterval(async()=>{
     try {
-      const d=await api(`/markets/${S.pair}`);
-      if(d.snapshot) { const b=d.snapshot.bid; updatePrice(b,S.candles.length?S.candles[S.candles.length-1].close:b); }
-    } catch(e){}
+      const d = await api(`/markets/${S.pair}`);
+      if(d.snapshot) {
+        const b = d.snapshot.bid;
+        updatePrice(b, S.candles.length ? S.candles[S.candles.length-1].close : b);
+      }
+    } catch(e){ console.warn('Live feed error:', e.message); }
   }, 5000);
 }
 
 function updatePrice(price, prev) {
-  document.getElementById('current-price').textContent=fmt(price);
-  const ch=((price-prev)/prev*100).toFixed(3);
-  const el=document.getElementById('price-change');
-  el.textContent=(ch>=0?'+':'')+ch+'%';
-  el.className='price-change '+(ch>=0?'pos':'neg');
+  document.getElementById('current-price').textContent = fmt(price);
+  const ch = ((price-prev)/prev*100).toFixed(3);
+  const el = document.getElementById('price-change');
+  el.textContent = (ch>=0?'+':'') + ch + '%';
+  el.className = 'price-change ' + (ch>=0?'pos':'neg');
 }
 
 // ═══════════════════════════════════════════════════
@@ -1809,7 +1281,7 @@ function updatePrice(price, prev) {
 function calcEMA(c,p){const k=2/(p+1);const e=[...c];e[0]=c[0];for(let i=1;i<c.length;i++)e[i]=c[i]*k+e[i-1]*(1-k);return e;}
 function calcRSI(c,p){const r=new Array(c.length).fill(50);let g=0,l=0;for(let i=1;i<=p;i++){const d=c[i]-c[i-1];d>0?g+=d:l+=Math.abs(d);}g/=p;l/=p;for(let i=p;i<c.length;i++){const d=c[i]-c[i-1];const gn=d>0?d:0,ln=d<0?Math.abs(d):0;g=(g*(p-1)+gn)/p;l=(l*(p-1)+ln)/p;const rs=l===0?100:g/l;r[i]=100-(100/(1+rs));}return r;}
 function calcMACD(c){const e12=calcEMA(c,12),e26=calcEMA(c,26);return c.map((_,i)=>e12[i]-e26[i]);}
-function calcATR(h,l,c,idx,p){const s=Math.max(1,idx-p);let sum=0,cnt=0;for(let i=s;i<=idx;i++){const tr=Math.max(h[i]-l[i],Math.abs(h[i]-c[i-1]),Math.abs(l[i]-c[i-1]));sum+=tr;cnt++;}return cnt>0?sum/cnt:h[idx]-l[idx];}
+function calcATR(h,l,c,idx,p){const s=Math.max(1,idx-p);let sum=0,cnt=0;for(let i=s;i<=idx;i++){const tr=Math.max(h[i]-l[i],i>0?Math.abs(h[i]-c[i-1]):0,i>0?Math.abs(l[i]-c[i-1]):0);sum+=tr;cnt++;}return cnt>0?sum/cnt:h[idx]-l[idx];}
 function calcMaxDD(curve,start){let peak=start,dd=0;for(const v of curve){if(v>peak)peak=v;const d=((peak-v)/peak)*100;if(d>dd)dd=d;}return dd;}
 
 // ═══════════════════════════════════════════════════
@@ -1817,7 +1289,12 @@ function calcMaxDD(curve,start){let peak=start,dd=0;for(const v of curve){if(v>p
 // ═══════════════════════════════════════════════════
 function getPipSize(){const p=S.pair;if(p.includes('JPY'))return 0.01;if(p.includes('XAU')||p.includes('BTC')||p.includes('ETH'))return 1;if(p.includes('US1')||p.includes('US5')||p.includes('OIL'))return 0.1;return 0.0001;}
 function fmt(n){if(n==null)return'---';if(S.pair.includes('JPY'))return n.toFixed(3);if(S.pair.includes('BTC')||S.pair.includes('US'))return n.toFixed(2);if(S.pair.includes('XAU'))return n.toFixed(2);return n.toFixed(5);}
-function showLoading(show){const el=document.getElementById('loading-overlay');el.style.display=show?'flex':'none';}
+function showLoading(show, label='CONNECTING...'){
+  const el=document.getElementById('loading-overlay');
+  const lbl=document.getElementById('loading-label');
+  el.style.display=show?'flex':'none';
+  if(lbl) lbl.textContent=label;
+}
 function hideAllScreens(){['config-screen','login-screen','setup-screen'].forEach(id=>document.getElementById(id).style.display='none');}
 function switchTab(tab,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(t=>t.classList.remove('active'));el.classList.add('active');document.getElementById('tab-'+tab).classList.add('active');if(tab==='chart'&&S.chart){setTimeout(()=>{const c=document.getElementById('chart-container');S.chart.applyOptions({width:c.clientWidth,height:c.clientHeight});},50);}}
 function setTF(tf,btn){S.tf=tf;document.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');refreshChart();}
