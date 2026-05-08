@@ -10,7 +10,8 @@
 
 <!-- ── YOUR APPS SCRIPT WEB APP URL ──────────────────────────────── -->
 <script>
-  window.GAS_URL = 'https://script.google.com/macros/library/d/1J2oSrc1AjWN2zBiWNXC1KHw5h6vpxSHlTMZP9hZeMi_T3foPzhUWSxJV/2';
+  // ⚠️ PASTE YOUR DEPLOYED WEB APP URL HERE (must end in /exec)
+  window.GAS_URL = 'https://script.google.com/macros/s/AKfycbxbsRaXc3Vg2MF6Blold_iWoZiQvLZSCD7LkXMMZa5wqZmOMKg-hMRTeb74iG_9Wmk8/exec';
 </script>
 <!-- ─────────────────────────────────────────────────────────────── -->
 
@@ -829,10 +830,13 @@ async function launchApp() {
 //  APPS SCRIPT API
 // ════════════════════════════════════════════════════════════════════
 async function gas(params) {
+  if (!window.GAS_URL || !/\/macros\/s\/[^\/]+\/exec/.test(window.GAS_URL)) {
+    throw new Error('GAS_URL is not a deployed Web App URL. In Apps Script: Deploy → New deployment → Web app → Execute as Me → Anyone, then paste the /exec URL into window.GAS_URL.');
+  }
   const url = new URL(window.GAS_URL);
   Object.entries(params).forEach(([k,v]) => url.searchParams.set(k, v));
-  const resp = await fetch(url.toString(), { redirect: 'follow' });
-  if (!resp.ok) throw new Error('GAS error ' + resp.status);
+  const resp = await fetch(url.toString(), { redirect: 'follow', mode: 'cors' });
+  if (!resp.ok) throw new Error('GAS error ' + resp.status + ' — check that the Web App is deployed with access set to "Anyone".');
   const data = await resp.json();
   if (data.error) throw new Error(data.error);
   return data;
