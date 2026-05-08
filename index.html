@@ -8,31 +8,6 @@
 <!-- TradingView Lightweight Charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightweight-charts/4.1.3/lightweight-charts.standalone.production.js"></script>
 
-<!-- Firebase -->
-<script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
-  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-
-// ── PASTE YOUR FIREBASE CONFIG ──────────────────────────────────────
-const firebaseConfig = {
-  apiKey: "AIzaSyDcOPAZersAFR9YVDgwpO41uMa4TUcOL-E",
-  authDomain: "auth-a99e7.firebaseapp.com",
-  projectId: "auth-a99e7",
-  storageBucket: "auth-a99e7.firebasestorage.app",
-  messagingSenderId: "299303403763",
-  appId: "1:299303403763:web:6bcb20bca69251aa287786",
-  measurementId: "G-8Q0CFRVEML
-};
-// ───────────────────────────────────────────────────────────────────
-
-const app  = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-window._fb = { auth, provider, signInWithPopup, signOut, onAuthStateChanged };
-window.dispatchEvent(new Event('firebase-ready'));
-</script>
-
 <!-- ── YOUR APPS SCRIPT WEB APP URL ──────────────────────────────── -->
 <script>
   window.GAS_URL = 'https://script.google.com/macros/s/AKfycbxbsRaXc3Vg2MF6Blold_iWoZiQvLZSCD7LkXMMZa5wqZmOMKg-hMRTeb74iG_9Wmk8/exec';
