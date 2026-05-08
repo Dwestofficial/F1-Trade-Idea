@@ -70,153 +70,6 @@ body::after {
 }
 
 /* ══════════════════════════════════════════════════════
-   LOGIN
-══════════════════════════════════════════════════════ */
-#login-screen {
-  position:fixed;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  background: var(--bg);
-  z-index:1000;
-}
-
-.login-bg {
-  position:absolute;inset:0;overflow:hidden;
-}
-
-.login-bg-grid {
-  position:absolute;inset:-50%;
-  background-image:
-    linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: gridDrift 20s linear infinite;
-}
-
-@keyframes gridDrift { to { transform: translate(60px, 60px); } }
-
-.login-bg-glow {
-  position:absolute;
-  width:600px;height:600px;
-  background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  animation: glowPulse 4s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-  0%,100%{opacity:0.6;transform:translate(-50%,-50%) scale(1);}
-  50%{opacity:1;transform:translate(-50%,-50%) scale(1.1);}
-}
-
-.login-card {
-  position:relative;z-index:1;
-  width:440px;
-  background: var(--panel);
-  border:1px solid var(--border2);
-  border-radius:20px;
-  padding:48px 44px;
-  animation: loginIn 0.6s cubic-bezier(0.16,1,0.3,1) both;
-  overflow:hidden;
-}
-
-@keyframes loginIn {
-  from{opacity:0;transform:translateY(30px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-.login-card::before {
-  content:'';
-  position:absolute;top:0;left:0;right:0;height:1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-}
-
-.login-card::after {
-  content:'';
-  position:absolute;bottom:0;left:0;right:0;height:1px;
-  background: linear-gradient(90deg, transparent, rgba(59,130,246,0.3), transparent);
-}
-
-.apex-logo {
-  display:flex;align-items:center;gap:12px;margin-bottom:32px;
-}
-
-.apex-mark {
-  width:44px;height:44px;
-  background: linear-gradient(135deg, var(--accent), var(--purple));
-  border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;font-weight:700;color:#fff;
-  font-family:var(--display);
-  box-shadow: 0 0 24px rgba(59,130,246,0.4);
-}
-
-.apex-name {
-  font-family:var(--display);
-  font-size:22px;font-weight:700;
-  color:var(--white);
-  letter-spacing:3px;
-}
-
-.apex-tagline {
-  font-family:var(--mono);
-  font-size:10px;
-  color:var(--accent);
-  letter-spacing:2px;
-}
-
-.login-title {
-  font-size:26px;font-weight:700;
-  color:var(--white);line-height:1.2;
-  margin-bottom:8px;
-}
-
-.login-sub {
-  font-family:var(--mono);font-size:11px;
-  color:var(--text);margin-bottom:32px;
-  line-height:1.7;
-}
-
-.g-btn {
-  width:100%;padding:14px 20px;
-  background:var(--white);color:#1a1a2e;
-  border:none;border-radius:12px;
-  font-size:14px;font-weight:600;
-  font-family:var(--display);
-  cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:12px;
-  transition:all 0.2s;letter-spacing:0.5px;
-}
-
-.g-btn:hover {
-  background:#e8effe;
-  transform:translateY(-2px);
-  box-shadow:0 10px 30px rgba(0,0,0,0.5);
-}
-
-.g-icon{width:20px;height:20px;}
-
-.login-features {
-  margin-top:28px;
-  display:flex;flex-direction:column;gap:7px;
-}
-
-.lf-row {
-  display:flex;align-items:center;gap:10px;
-  font-family:var(--mono);font-size:11px;color:var(--text);
-}
-
-.lf-dot {
-  width:4px;height:4px;border-radius:50%;
-  background:var(--accent);flex-shrink:0;
-}
-
-.login-err {
-  background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);
-  border-radius:8px;padding:10px 14px;
-  font-family:var(--mono);font-size:11px;color:var(--red2);
-  margin-bottom:14px;display:none;
-}
-
-/* ══════════════════════════════════════════════════════
    LOADING
 ══════════════════════════════════════════════════════ */
 #loading-overlay {
@@ -249,7 +102,7 @@ body::after {
 /* ══════════════════════════════════════════════════════
    APP LAYOUT
 ══════════════════════════════════════════════════════ */
-#app{display:none;flex-direction:column;height:100vh;}
+#app{display:flex;flex-direction:column;height:100vh;}
 
 /* TOPBAR */
 .topbar {
@@ -284,7 +137,7 @@ body::after {
 }
 
 /* Pair selector */
-.pair-wrap {display:flex;align-items:center;gap:8px;}
+.pair-wrap{display:flex;align-items:center;gap:8px;}
 .pair-lbl {
   font-family:var(--mono);font-size:9px;color:var(--text);
   letter-spacing:2px;text-transform:uppercase;
@@ -374,28 +227,6 @@ body::after {
   animation:voicePulse 1s ease-in-out infinite;
 }
 @keyframes voicePulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,0.4)}50%{box-shadow:0 0 0 4px rgba(16,185,129,0)}}
-
-.tb-avatar {
-  width:32px;height:32px;border-radius:50%;
-  object-fit:cover;
-  border:1px solid var(--border2);cursor:pointer;
-}
-.tb-avatar-ph {
-  width:32px;height:32px;border-radius:50%;
-  background:linear-gradient(135deg,var(--accent),var(--purple));
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--display);font-size:12px;font-weight:700;color:#fff;
-  cursor:pointer;flex-shrink:0;
-}
-
-.disconnect-btn {
-  padding:5px 10px;
-  border:1px solid var(--border);
-  border-radius:6px;background:transparent;
-  color:var(--text);font-family:var(--mono);font-size:9px;
-  cursor:pointer;transition:all 0.2s;letter-spacing:1px;
-}
-.disconnect-btn:hover{color:var(--red2);border-color:var(--red);}
 
 /* TABS */
 .tabs {
@@ -746,42 +577,6 @@ body::after {
 </head>
 <body>
 
-<!-- ═══════════════════ LOGIN ═══════════════════ -->
-<div id="login-screen">
-  <div class="login-bg">
-    <div class="login-bg-grid"></div>
-    <div class="login-bg-glow"></div>
-  </div>
-  <div class="login-card">
-    <div class="apex-logo">
-      <div class="apex-mark">A</div>
-      <div>
-        <div class="apex-name">APEX</div>
-        <div class="apex-tagline">SMC · TRADING · TERMINAL</div>
-      </div>
-    </div>
-    <div class="login-title">Professional<br>Market Intelligence</div>
-    <div class="login-sub">Real-time SMC analysis, AI voice synthesis,<br>strategy backtesting & live Capital.com data.</div>
-    <div class="login-err" id="login-err"></div>
-    <button class="g-btn" onclick="doGoogleSignIn()">
-      <svg class="g-icon" viewBox="0 0 48 48">
-        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-      </svg>
-      Continue with Google
-    </button>
-    <div class="login-features">
-      <div class="lf-row"><div class="lf-dot"></div>Live Capital.com price feeds via Google Apps Script</div>
-      <div class="lf-row"><div class="lf-dot"></div>SMC zones · BOS · CHoCH · Order Blocks</div>
-      <div class="lf-row"><div class="lf-dot"></div>AI voice analyst — reads analysis aloud naturally</div>
-      <div class="lf-row"><div class="lf-dot"></div>Plain-English strategy backtester with win rates</div>
-      <div class="lf-row"><div class="lf-dot"></div>7 customisable timeframes up to Monthly</div>
-    </div>
-  </div>
-</div>
-
 <!-- ═══════════════════ LOADING ═══════════════════ -->
 <div id="loading-overlay">
   <div class="load-ring"></div>
@@ -835,8 +630,6 @@ body::after {
         <span id="voice-icon">🔊</span>
         <span id="voice-lbl">VOICE</span>
       </button>
-      <div id="tb-avatar"></div>
-      <button class="disconnect-btn" onclick="doLogout()">DISCONNECT</button>
     </div>
   </div>
 
@@ -975,7 +768,6 @@ body::after {
 //  STATE
 // ════════════════════════════════════════════════════════════════════
 const S = {
-  user: null,
   pair: 'EURUSD',
   tf: 'HOUR',
   candles: [],
@@ -984,7 +776,6 @@ const S = {
   priceLines: [],
   smcData: null,
   liveTimer: null,
-  voiceEnabled: false,
   speaking: false,
   tfs: [
     {label:'1M', val:'MINUTE'},
@@ -1010,53 +801,28 @@ const S = {
     {label:'1W',   val:'WEEK'},
     {label:'1MO',  val:'MONTH'},
   ],
-  selectedTFs: [], // temp for modal
+  selectedTFs: [],
 };
 
 // ════════════════════════════════════════════════════════════════════
-//  FIREBASE
+//  LAUNCH ON PAGE LOAD — no login required
 // ════════════════════════════════════════════════════════════════════
-let FB = null;
-window.addEventListener('firebase-ready', () => { FB = window._fb; initAuth(); });
 window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => { if (!FB) showLogin(); }, 2200);
+  renderTFBar();
+  launchApp();
 });
 
-function initAuth() {
-  showLogin();
-  FB.onAuthStateChanged(FB.auth, user => {
-    if (user) {
-      S.user = user;
-      hideLogin();
-      launchApp();
-    } else {
-      S.user = null;
-      showLogin();
-    }
-  });
-}
-
-function showLogin() { document.getElementById('login-screen').style.display = 'flex'; }
-function hideLogin() { document.getElementById('login-screen').style.display = 'none'; }
-
-async function doGoogleSignIn() {
-  const err = document.getElementById('login-err');
-  err.style.display = 'none';
-  if (!FB) { err.textContent = 'Firebase not configured.'; err.style.display = 'block'; return; }
+async function launchApp() {
+  setLoad(true, 'LOADING CHART');
   try {
-    await FB.signInWithPopup(FB.auth, FB.provider);
+    await initChart();
+    startLive();
   } catch(e) {
-    err.textContent = e.message;
-    err.style.display = 'block';
+    console.error(e);
+    showChartErr(e.message);
+  } finally {
+    setLoad(false);
   }
-}
-
-async function doLogout() {
-  clearInterval(S.liveTimer);
-  stopVoice();
-  if (FB) await FB.signOut(FB.auth);
-  document.getElementById('app').style.display = 'none';
-  showLogin();
 }
 
 // ════════════════════════════════════════════════════════════════════
@@ -1070,37 +836,6 @@ async function gas(params) {
   const data = await resp.json();
   if (data.error) throw new Error(data.error);
   return data;
-}
-
-// ════════════════════════════════════════════════════════════════════
-//  LAUNCH APP
-// ════════════════════════════════════════════════════════════════════
-async function launchApp() {
-  setLoad(true, 'AUTHENTICATING');
-  renderAvatar();
-  renderTFBar();
-  document.getElementById('app').style.display = 'flex';
-  try {
-    await gas({ action: 'ping' });
-    setLoad(true, 'LOADING CHART');
-    await initChart();
-    startLive();
-  } catch(e) {
-    console.error(e);
-    showChartErr(e.message);
-  } finally {
-    setLoad(false);
-  }
-}
-
-function renderAvatar() {
-  const el = document.getElementById('tb-avatar');
-  if (S.user?.photoURL) {
-    el.innerHTML = `<img class="tb-avatar" src="${S.user.photoURL}" title="${S.user.displayName}">`;
-  } else {
-    const i = (S.user?.displayName || 'A')[0].toUpperCase();
-    el.innerHTML = `<div class="tb-avatar-ph">${i}</div>`;
-  }
 }
 
 // ════════════════════════════════════════════════════════════════════
@@ -1138,7 +873,6 @@ function toggleTFOption(val, btn) {
     btn.classList.remove('sel');
   } else {
     if (S.selectedTFs.length >= 7) {
-      // remove oldest
       const oldest = S.selectedTFs.shift();
       document.querySelectorAll('.tfo').forEach(b => {
         if (b.textContent === S.allTFs.find(t=>t.val===oldest)?.label) b.classList.remove('sel');
@@ -1209,7 +943,6 @@ async function loadCandles() {
       close: p.closePrice?.bid || p.closePrice?.mid || 0,
     })).filter(c => c.time > 0 && c.open > 0);
 
-    // Deduplicate & sort
     const seen = new Set();
     const clean = candles
       .filter(c => { if (seen.has(c.time)) return false; seen.add(c.time); return true; })
@@ -1252,7 +985,6 @@ function runSMC() {
   const lo = c.map(x => x.low);
   const cur = cl[n-1];
 
-  // ── Swing Highs / Lows ──
   const swH = [], swL = [];
   for (let i = 5; i < n-5; i++) {
     const slice_h = hi.slice(i-5, i+6);
@@ -1261,7 +993,6 @@ function runSMC() {
     if (lo[i] === Math.min(...slice_l)) swL.push({ i, p: lo[i], t: c[i].time });
   }
 
-  // ── Order Blocks (Supply) ──
   const supply = [];
   for (let i = 10; i < n-3; i++) {
     const bearish_move = cl[i+1] < c[i+1].open;
@@ -1272,7 +1003,6 @@ function runSMC() {
     }
   }
 
-  // ── Order Blocks (Demand) ──
   const demand = [];
   for (let i = 10; i < n-3; i++) {
     const bullish_move = cl[i+1] > c[i+1].open;
@@ -1286,7 +1016,6 @@ function runSMC() {
   const nearSup = supply.filter(z => z.bot > cur).sort((a,b) => a.bot - b.bot).slice(0,3);
   const nearDem = demand.filter(z => z.top < cur).sort((a,b) => b.top - a.top).slice(0,3);
 
-  // ── BOS / CHoCH ──
   let bos = null, choch = null;
   if (swH.length >= 2) {
     const [a, b] = swH.slice(-2);
@@ -1299,12 +1028,10 @@ function runSMC() {
     if (b.p > a.p) choch = 'CHOCH_BULL';
   }
 
-  // ── EMA Structure ──
   const ema20 = calcEMA(cl, 20);
   const ema50 = calcEMA(cl, 50);
   const trend = ema20[n-1] > ema50[n-1] ? 'BULLISH' : ema20[n-1] < ema50[n-1] ? 'BEARISH' : 'RANGING';
 
-  // ── RSI ──
   const rsi = calcRSI(cl, 14);
   const rsiNow = rsi[n-1];
 
@@ -1333,7 +1060,6 @@ function drawZones(supply, demand) {
 function renderSidebar() {
   const { nearSup, nearDem, bos, choch, trend, rsiNow } = S.smcData;
 
-  // Overlay tags
   document.getElementById('chart-overlay').innerHTML = [
     `<div class="co-tag s">${nearSup.length} Supply</div>`,
     `<div class="co-tag d">${nearDem.length} Demand</div>`,
@@ -1342,7 +1068,6 @@ function renderSidebar() {
     `<div class="co-tag" style="background:rgba(245,158,11,0.1);color:#fbbf24;border:1px solid rgba(245,158,11,0.3)">RSI ${rsiNow.toFixed(0)}</div>`,
   ].join('');
 
-  // Market structure
   const tc = trend === 'BULLISH' ? 'bull' : trend === 'BEARISH' ? 'bear' : 'neu';
   document.getElementById('ms-tags').innerHTML = [
     `<div class="ms-tag ${tc}">${trend}</div>`,
@@ -1350,7 +1075,6 @@ function renderSidebar() {
     choch ? `<div class="ms-tag ${choch.includes('BULL') ? 'bull' : 'bear'}">${choch.replace('_',' ')}</div>` : '',
   ].join('');
 
-  // Supply zones
   document.getElementById('supply-list').innerHTML = nearSup.length
     ? nearSup.map(z => `
         <div class="zone-row s">
@@ -1359,7 +1083,6 @@ function renderSidebar() {
         </div>`).join('')
     : '<div class="analysis-text">No supply zones above current price</div>';
 
-  // Demand zones
   document.getElementById('demand-list').innerHTML = nearDem.length
     ? nearDem.map(z => `
         <div class="zone-row d">
@@ -1442,39 +1165,22 @@ function renderTradeIdea() {
 //  VOICE AI
 // ════════════════════════════════════════════════════════════════════
 function toggleVoice() {
-  if (S.speaking) {
-    stopVoice();
-    return;
-  }
+  if (S.speaking) { stopVoice(); return; }
   const text = S._lastAnalysisText;
   if (!text) return;
   speakText(text);
 }
 
 function speakText(text) {
-  if (!('speechSynthesis' in window)) {
-    alert('Your browser does not support speech synthesis.');
-    return;
-  }
-
+  if (!('speechSynthesis' in window)) { alert('Your browser does not support speech synthesis.'); return; }
   window.speechSynthesis.cancel();
-
   const utter = new SpeechSynthesisUtterance(text);
-
-  // Pick best available voice (prefer natural-sounding)
   const voices = window.speechSynthesis.getVoices();
-  const preferred = voices.find(v =>
-    v.name.includes('Google') && v.lang.startsWith('en')
-  ) || voices.find(v =>
-    (v.name.includes('Natural') || v.name.includes('Premium') || v.name.includes('Enhanced')) && v.lang.startsWith('en')
-  ) || voices.find(v => v.lang === 'en-US') || voices[0];
-
+  const preferred = voices.find(v => v.name.includes('Google') && v.lang.startsWith('en'))
+    || voices.find(v => (v.name.includes('Natural') || v.name.includes('Premium') || v.name.includes('Enhanced')) && v.lang.startsWith('en'))
+    || voices.find(v => v.lang === 'en-US') || voices[0];
   if (preferred) utter.voice = preferred;
-  utter.rate = 0.92;
-  utter.pitch = 1.0;
-  utter.volume = 1.0;
-  utter.lang = 'en-US';
-
+  utter.rate = 0.92; utter.pitch = 1.0; utter.volume = 1.0; utter.lang = 'en-US';
   utter.onstart = () => {
     S.speaking = true;
     document.getElementById('voice-btn').classList.add('speaking');
@@ -1482,7 +1188,6 @@ function speakText(text) {
     document.getElementById('voice-icon').textContent = '⏹';
     document.getElementById('voice-indicator').classList.add('on');
   };
-
   utter.onend = utter.onerror = () => {
     S.speaking = false;
     document.getElementById('voice-btn').classList.remove('speaking');
@@ -1490,7 +1195,6 @@ function speakText(text) {
     document.getElementById('voice-icon').textContent = '🔊';
     document.getElementById('voice-indicator').classList.remove('on');
   };
-
   window.speechSynthesis.speak(utter);
 }
 
@@ -1503,7 +1207,6 @@ function stopVoice() {
   document.getElementById('voice-indicator').classList.remove('on');
 }
 
-// Preload voices
 if ('speechSynthesis' in window) {
   window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
 }
@@ -1533,19 +1236,15 @@ function updatePrice(price, prev) {
 }
 
 // ════════════════════════════════════════════════════════════════════
-//  BACKTEST ENGINE (plain-English strategy parser)
+//  BACKTEST ENGINE
 // ════════════════════════════════════════════════════════════════════
 function parseStrategy(text) {
   const t = text.toLowerCase();
   const conditions = [];
-
-  // EMA conditions
   const emaAbove = t.match(/above.*?(\d+)\s*ema|ema.*?(\d+).*?above/);
   const emaBelow = t.match(/below.*?(\d+)\s*ema|ema.*?(\d+).*?below/);
   if (emaAbove) conditions.push({ type: 'ema_above', period: parseInt(emaAbove[1]||emaAbove[2]) });
   if (emaBelow) conditions.push({ type: 'ema_below', period: parseInt(emaBelow[1]||emaBelow[2]) });
-
-  // RSI conditions
   if (t.includes('rsi cross') && (t.includes('above') || t.includes('over'))) {
     const m = t.match(/rsi.*?cross.*?(\d+)/);
     conditions.push({ type: 'rsi_cross_above', level: m ? parseInt(m[1]) : 30 });
@@ -1560,59 +1259,25 @@ function parseStrategy(text) {
   if (t.includes('rsi') && !t.includes('cross') && (t.includes('overbought') || (t.includes('above') && t.includes('70')))) {
     conditions.push({ type: 'rsi_cross_below', level: 70 });
   }
-
-  // Zone conditions
-  if (t.includes('demand zone') || t.includes('support zone') || t.includes('demand')) {
-    conditions.push({ type: 'near_demand' });
-  }
-  if (t.includes('supply zone') || t.includes('resistance zone') || t.includes('supply')) {
-    conditions.push({ type: 'near_supply' });
-  }
-
-  // BOS conditions
-  if (t.includes('bullish bos') || t.includes('bos bull') || (t.includes('bos') && (t.includes('bull') || t.includes('break')))) {
-    conditions.push({ type: 'bos_bull' });
-  }
-  if (t.includes('bearish bos') || t.includes('bos bear') || (t.includes('bos') && t.includes('bear'))) {
-    conditions.push({ type: 'bos_bear' });
-  }
-
-  // MACD
-  if (t.includes('macd') && (t.includes('bull') || t.includes('cross above') || t.includes('positive'))) {
-    conditions.push({ type: 'macd_bull' });
-  }
-  if (t.includes('macd') && (t.includes('bear') || t.includes('cross below') || t.includes('negative'))) {
-    conditions.push({ type: 'macd_bear' });
-  }
-
-  // Candlestick patterns
-  if (t.includes('hammer') || t.includes('pin bar') || t.includes('bullish engulf')) {
-    conditions.push({ type: 'bull_candle' });
-  }
-  if (t.includes('shooting star') || t.includes('bearish engulf') || t.includes('doji')) {
-    conditions.push({ type: 'bear_candle' });
-  }
-
+  if (t.includes('demand zone') || t.includes('support zone') || t.includes('demand')) conditions.push({ type: 'near_demand' });
+  if (t.includes('supply zone') || t.includes('resistance zone') || t.includes('supply')) conditions.push({ type: 'near_supply' });
+  if (t.includes('bullish bos') || t.includes('bos bull') || (t.includes('bos') && (t.includes('bull') || t.includes('break')))) conditions.push({ type: 'bos_bull' });
+  if (t.includes('bearish bos') || t.includes('bos bear') || (t.includes('bos') && t.includes('bear'))) conditions.push({ type: 'bos_bear' });
+  if (t.includes('macd') && (t.includes('bull') || t.includes('cross above') || t.includes('positive'))) conditions.push({ type: 'macd_bull' });
+  if (t.includes('macd') && (t.includes('bear') || t.includes('cross below') || t.includes('negative'))) conditions.push({ type: 'macd_bear' });
+  if (t.includes('hammer') || t.includes('pin bar') || t.includes('bullish engulf')) conditions.push({ type: 'bull_candle' });
+  if (t.includes('shooting star') || t.includes('bearish engulf') || t.includes('doji')) conditions.push({ type: 'bear_candle' });
   return conditions;
 }
 
 function evalCondition(cond, i, data) {
   const { closes, highs, lows, ema20, ema50, rsi, macd, candles } = data;
   if (i < 1) return false;
-
   switch (cond.type) {
-    case 'ema_above': {
-      const ema = cond.period <= 20 ? ema20 : ema50;
-      return closes[i] > ema[i];
-    }
-    case 'ema_below': {
-      const ema = cond.period <= 20 ? ema20 : ema50;
-      return closes[i] < ema[i];
-    }
-    case 'rsi_cross_above':
-      return rsi[i] > cond.level && rsi[i-1] <= cond.level;
-    case 'rsi_cross_below':
-      return rsi[i] < cond.level && rsi[i-1] >= cond.level;
+    case 'ema_above': return closes[i] > (cond.period <= 20 ? ema20 : ema50)[i];
+    case 'ema_below': return closes[i] < (cond.period <= 20 ? ema20 : ema50)[i];
+    case 'rsi_cross_above': return rsi[i] > cond.level && rsi[i-1] <= cond.level;
+    case 'rsi_cross_below': return rsi[i] < cond.level && rsi[i-1] >= cond.level;
     case 'near_demand': {
       const atr = calcATR(highs, lows, closes, i, 14);
       for (let j = Math.max(0, i-50); j < i; j++) {
@@ -1631,20 +1296,13 @@ function evalCondition(cond, i, data) {
       }
       return false;
     }
-    case 'bos_bull':
-      return highs[i] > Math.max(...highs.slice(Math.max(0,i-15), i));
-    case 'bos_bear':
-      return lows[i] < Math.min(...lows.slice(Math.max(0,i-15), i));
-    case 'macd_bull':
-      return macd[i] > 0 && macd[i] > macd[i-1];
-    case 'macd_bear':
-      return macd[i] < 0 && macd[i] < macd[i-1];
-    case 'bull_candle':
-      return candles[i].close > candles[i].open && (candles[i].close - candles[i].open) > (candles[i].high - candles[i].low) * 0.6;
-    case 'bear_candle':
-      return candles[i].open > candles[i].close && (candles[i].open - candles[i].close) > (candles[i].high - candles[i].low) * 0.6;
-    default:
-      return false;
+    case 'bos_bull': return highs[i] > Math.max(...highs.slice(Math.max(0,i-15), i));
+    case 'bos_bear': return lows[i] < Math.min(...lows.slice(Math.max(0,i-15), i));
+    case 'macd_bull': return macd[i] > 0 && macd[i] > macd[i-1];
+    case 'macd_bear': return macd[i] < 0 && macd[i] < macd[i-1];
+    case 'bull_candle': return candles[i].close > candles[i].open && (candles[i].close - candles[i].open) > (candles[i].high - candles[i].low) * 0.6;
+    case 'bear_candle': return candles[i].open > candles[i].close && (candles[i].open - candles[i].close) > (candles[i].high - candles[i].low) * 0.6;
+    default: return false;
   }
 }
 
@@ -1663,7 +1321,6 @@ async function runBacktest() {
   const longConds = parseStrategy(longText);
   const shortConds = parseStrategy(shortText);
 
-  // Fetch fresh data for backtest timeframe
   let candles = S.candles;
   if (candles.length < 50) {
     try {
@@ -1704,15 +1361,12 @@ async function runBacktest() {
     if (!inTrade) {
       const goLong = longConds.length > 0 && longConds.every(c => evalCondition(c, i, data));
       const goShort = shortConds.length > 0 && shortConds.every(c => evalCondition(c, i, data));
-
       if (goLong) {
         inTrade = true; tType = 'LONG'; tEntry = closes[i];
-        tSL = tEntry - sl_pips * pip; tTP = tEntry + tp_pips * pip;
-        tOpen = candles[i].time;
+        tSL = tEntry - sl_pips * pip; tTP = tEntry + tp_pips * pip; tOpen = candles[i].time;
       } else if (goShort && !goLong) {
         inTrade = true; tType = 'SHORT'; tEntry = closes[i];
-        tSL = tEntry + sl_pips * pip; tTP = tEntry - tp_pips * pip;
-        tOpen = candles[i].time;
+        tSL = tEntry + sl_pips * pip; tTP = tEntry - tp_pips * pip; tOpen = candles[i].time;
       }
     } else {
       let result = null, exitPrice = null;
@@ -1743,9 +1397,7 @@ async function runBacktest() {
     ? (trades.filter(t=>t.result==='WIN').reduce((s,t)=>s+t.pnl,0) / Math.abs(trades.filter(t=>t.result==='LOSS').reduce((s,t)=>s+t.pnl,0))).toFixed(2)
     : '∞';
 
-  // Strategy summary
   const summary = buildStrategySummary(longConds, shortConds, longText, shortText);
-
   renderBTResults({ wr, wins, losses, total: trades.length, totalPnL, eq, maxDD, pf, curve, trades, capital, summary });
   btn.disabled = false; btn.textContent = '▶ RUN BACKTEST';
 }
@@ -1765,14 +1417,9 @@ function buildStrategySummary(longConds, shortConds, longText, shortText) {
     bull_candle: () => 'Bullish candle pattern',
     bear_candle: () => 'Bearish candle pattern',
   };
-  const longParsed = longConds.map(c => condNames[c.type] ? condNames[c.type](c) : c.type).join(' AND ');
-  const shortParsed = shortConds.map(c => condNames[c.type] ? condNames[c.type](c) : c.type).join(' AND ');
-
   return {
-    longRules: longParsed || 'No conditions detected',
-    shortRules: shortParsed || 'No conditions detected',
-    longRaw: longText,
-    shortRaw: shortText,
+    longRules: longConds.map(c => condNames[c.type] ? condNames[c.type](c) : c.type).join(' AND ') || 'No conditions detected',
+    shortRules: shortConds.map(c => condNames[c.type] ? condNames[c.type](c) : c.type).join(' AND ') || 'No conditions detected',
   };
 }
 
@@ -1784,7 +1431,6 @@ function renderBTResults({ wr, wins, losses, total, totalPnL, eq, maxDD, pf, cur
   const wrSc = +wr >= 50 ? 'sc-g' : 'sc-r';
 
   document.getElementById('bt-right').innerHTML = `
-    <!-- Strategy Interpretation -->
     <div style="background:var(--panel);border:1px solid var(--border2);border-radius:10px;padding:14px;">
       <div class="bt-stitle" style="margin-bottom:10px">Strategy Interpretation</div>
       <div style="margin-bottom:8px;">
@@ -1796,8 +1442,6 @@ function renderBTResults({ wr, wins, losses, total, totalPnL, eq, maxDD, pf, cur
         <div style="font-family:var(--mono);font-size:10px;color:var(--text2);line-height:1.7;">${summary.shortRules}</div>
       </div>
     </div>
-
-    <!-- Stats Grid -->
     <div class="res-grid">
       <div class="stat-card ${wrSc}"><div class="stat-lbl">Win Rate</div><div class="stat-val ${wrCls}">${wr}%</div><div class="stat-sub">${wins}W / ${losses}L</div></div>
       <div class="stat-card ${scCls}"><div class="stat-lbl">Net P&L</div><div class="stat-val ${pCls}">${pSign}$${Math.abs(totalPnL).toFixed(0)}</div><div class="stat-sub">Final: $${eq.toFixed(0)}</div></div>
@@ -1806,14 +1450,10 @@ function renderBTResults({ wr, wins, losses, total, totalPnL, eq, maxDD, pf, cur
       <div class="stat-card sc-y"><div class="stat-lbl">Total Trades</div><div class="stat-val y">${total}</div><div class="stat-sub">Signals fired</div></div>
       <div class="stat-card ${scCls}"><div class="stat-lbl">Return</div><div class="stat-val ${pCls}">${pSign}${((totalPnL/capital)*100).toFixed(1)}%</div><div class="stat-sub">On $${capital.toFixed(0)}</div></div>
     </div>
-
-    <!-- Equity Curve -->
     <div class="eq-wrap">
       <div class="eq-title">Equity Curve — Capital.com Price History</div>
       <canvas id="eq-canvas"></canvas>
     </div>
-
-    <!-- Trade Log -->
     <div class="log-wrap">
       <div class="log-head">Trade Log (last 25)</div>
       <table class="log-table">
@@ -1860,7 +1500,6 @@ function drawEquity(curve, start) {
     y: pad.t + iH - ((v - mn) / rng) * iH
   }));
 
-  // Fill
   const gr = ctx.createLinearGradient(0, pad.t, 0, pad.t + iH);
   gr.addColorStop(0, 'rgba(59,130,246,0.3)'); gr.addColorStop(1, 'rgba(59,130,246,0)');
   ctx.fillStyle = gr; ctx.beginPath();
@@ -1869,13 +1508,11 @@ function drawEquity(curve, start) {
   ctx.lineTo(pts[pts.length-1].x, pad.t + iH);
   ctx.closePath(); ctx.fill();
 
-  // Line
   ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2; ctx.lineJoin = 'round';
   ctx.beginPath();
   pts.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
   ctx.stroke();
 
-  // Baseline
   const by = pad.t + iH - ((start - mn) / rng) * iH;
   ctx.strokeStyle = '#243050'; ctx.lineWidth = 1; ctx.setLineDash([3, 5]);
   ctx.beginPath(); ctx.moveTo(pad.l, by); ctx.lineTo(W - pad.r, by); ctx.stroke();
