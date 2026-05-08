@@ -16,13 +16,12 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChang
 
 // ── PASTE YOUR FIREBASE CONFIG ──────────────────────────────────────
 const firebaseConfig = {
-  apiKey: "AIzaSyDcOPAZersAFR9YVDgwpO41uMa4TUcOL-E",
-  authDomain: "auth-a99e7.firebaseapp.com",
-  projectId: "auth-a99e7",
-  storageBucket: "auth-a99e7.firebasestorage.app",
-  messagingSenderId: "299303403763",
-  appId: "1:299303403763:web:e4ce89bfdaa5197e287786",
-  measurementId: "G-8QFQLB48KK"
+  apiKey:            "YOUR_FIREBASE_API_KEY",
+  authDomain:        "YOUR_PROJECT.firebaseapp.com",
+  projectId:         "YOUR_PROJECT_ID",
+  storageBucket:     "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId:             "YOUR_APP_ID"
 };
 // ───────────────────────────────────────────────────────────────────
 
@@ -35,7 +34,7 @@ window.dispatchEvent(new Event('firebase-ready'));
 
 <!-- ── YOUR APPS SCRIPT WEB APP URL ──────────────────────────────── -->
 <script>
-  window.GAS_URL = 'https://script.google.com/macros/s/AKfycbxbsRaXc3Vg2MF6Blold_iWoZiQvLZSCD7LkXMMZa5wqZmOMKg-hMRTeb74iG_9Wmk8/exec';
+  window.GAS_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
 </script>
 <!-- ─────────────────────────────────────────────────────────────── -->
 
