@@ -225,6 +225,95 @@ select:focus{border-color:var(--accent);}
   border-radius:8px;padding:8px 16px;font-family:var(--mono);font-size:10px;
   color:var(--red);z-index:500;
 }
+
+/* ── LOGIN SCREEN ────────────────────────────────────────────── */
+#login-screen{
+  position:fixed;inset:0;background:var(--bg);display:flex;
+  align-items:center;justify-content:center;z-index:998;
+}
+#login-screen.hidden{display:none;}
+.login-bg{position:absolute;inset:0;overflow:hidden;}
+.login-grid{
+  position:absolute;inset:-50%;
+  background-image:linear-gradient(rgba(0,229,255,0.04) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(0,229,255,0.04) 1px,transparent 1px);
+  background-size:48px 48px;animation:gridDrift 20s linear infinite;
+}
+@keyframes gridDrift{to{transform:translate(48px,48px);}}
+.login-glow{
+  position:absolute;width:500px;height:500px;
+  background:radial-gradient(circle,rgba(0,229,255,0.08) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:glowPulse 4s ease-in-out infinite;
+}
+@keyframes glowPulse{0%,100%{opacity:0.5;}50%{opacity:1;}}
+.login-card{
+  position:relative;z-index:1;width:400px;
+  background:var(--bg1);border:1px solid var(--border2);
+  border-radius:16px;padding:36px 32px;
+  box-shadow:0 24px 64px rgba(0,0,0,0.5);
+  animation:cardIn 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+@keyframes cardIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.login-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+}
+.login-logo{display:flex;align-items:center;gap:10px;margin-bottom:24px;}
+.login-mark{
+  width:40px;height:40px;border-radius:9px;
+  background:linear-gradient(135deg,var(--accent),#0070ff);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:16px;font-weight:700;color:#000;
+  box-shadow:0 0 18px rgba(0,229,255,0.4);
+}
+.login-title{font-size:20px;font-weight:800;color:var(--text);margin-bottom:4px;}
+.login-sub{font-family:var(--mono);font-size:8px;color:var(--accent);letter-spacing:2px;}
+.login-head{font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.login-desc{font-family:var(--mono);font-size:9px;color:var(--text3);margin-bottom:22px;line-height:1.7;}
+.lf-row{margin-bottom:13px;}
+.lf-label{font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--text3);
+  text-transform:uppercase;margin-bottom:5px;}
+.lf-input{
+  width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:7px;
+  color:var(--text);font-family:var(--mono);font-size:11px;padding:9px 12px;
+  outline:none;transition:border-color 0.2s;
+}
+.lf-input:focus{border-color:var(--accent);}
+.lf-input::placeholder{color:var(--text3);}
+.lf-select{
+  width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:7px;
+  color:var(--text);font-family:var(--mono);font-size:11px;padding:9px 12px;
+  outline:none;cursor:pointer;
+}
+.login-err{
+  background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);
+  border-radius:6px;padding:8px 12px;font-family:var(--mono);font-size:9px;
+  color:var(--red);margin-bottom:12px;display:none;
+}
+.login-btn{
+  width:100%;padding:12px;background:linear-gradient(135deg,var(--accent),#0070ff);
+  color:#000;border:none;border-radius:9px;font-family:var(--display);
+  font-size:12px;font-weight:800;letter-spacing:2px;cursor:pointer;
+  transition:all 0.2s;text-transform:uppercase;
+}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,229,255,0.3);}
+.login-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.login-note{
+  font-family:var(--mono);font-size:8px;color:var(--text3);margin-top:14px;
+  line-height:1.8;padding-top:14px;border-top:1px solid var(--border);
+}
+.login-note a{color:var(--accent);text-decoration:none;}
+.login-demo{
+  text-align:center;margin-top:10px;font-family:var(--mono);font-size:9px;
+  color:var(--text3);cursor:pointer;transition:color 0.2s;
+}
+.login-demo:hover{color:var(--accent);}
+.demo-badge{
+  display:inline-block;padding:2px 7px;border-radius:3px;
+  background:rgba(245,158,11,0.1);color:var(--gold);
+  border:1px solid rgba(245,158,11,0.25);font-size:8px;margin-left:4px;
+}
 </style>
 </head>
 <body>
@@ -235,6 +324,62 @@ select:focus{border-color:var(--accent);}
   <div class="ld-txt">INITIALISING BIAS ENGINE...</div>
 </div>
 <div id="err-banner"></div>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-bg">
+    <div class="login-grid"></div>
+    <div class="login-glow"></div>
+  </div>
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-mark">F1</div>
+      <div>
+        <div class="login-title">F1 BIAS INSIGHT</div>
+        <div class="login-sub">SMC · ZONES · SESSIONS</div>
+      </div>
+    </div>
+    <div class="login-head">Connect Capital.com</div>
+    <div class="login-desc">
+      Enter your API credentials. Everything runs locally in your browser.<br>
+      Session tokens (CST + X-SECURITY-TOKEN) are fetched automatically.
+    </div>
+
+    <div class="lf-row">
+      <div class="lf-label">Environment</div>
+      <select class="lf-select" id="login-env">
+        <option value="demo">Demo Account</option>
+        <option value="live">Live Account</option>
+      </select>
+    </div>
+    <div class="lf-row">
+      <div class="lf-label">API Key</div>
+      <input class="lf-input" type="text" id="login-key" placeholder="Your Capital.com API key">
+    </div>
+    <div class="lf-row">
+      <div class="lf-label">Email / Account Identifier</div>
+      <input class="lf-input" type="text" id="login-id" placeholder="your@email.com">
+    </div>
+    <div class="lf-row">
+      <div class="lf-label">Password</div>
+      <input class="lf-input" type="password" id="login-pw" placeholder="Your Capital.com password">
+    </div>
+
+    <div class="login-err" id="login-err"></div>
+    <button class="login-btn" id="login-btn" onclick="doLogin()">CONNECT →</button>
+
+    <div class="login-demo" onclick="launchDemo()">
+      Skip — use demo data <span class="demo-badge">OFFLINE</span>
+    </div>
+
+    <div class="login-note">
+      <b style="color:var(--text2);">How to get your API key:</b><br>
+      Capital.com → Settings → API integrations → Generate API key<br><br>
+      Your credentials are never stored or sent anywhere except Capital.com's servers.
+      Session tokens auto-refresh every 9 minutes.
+    </div>
+  </div>
+</div>
 
 <!-- TOPBAR -->
 <div id="topbar">
@@ -354,24 +499,96 @@ select:focus{border-color:var(--accent);}
 
 <script>
 // ════════════════════════════════════════════════════════════════
-//  CAPITAL.COM DATA LAYER  (missing capital.functions.ts)
+//  CAPITAL.COM DATA LAYER  — Session auth + candle fetch
 // ════════════════════════════════════════════════════════════════
 
-// Capital.com API base — comment out and replace with your own proxy if needed
-const CAP_BASE = 'https://demo-api-capital.backend-capital.com';
-let CAP_CST = '';
-let CAP_XST = '';
-let CAP_KEY = '';        // set via prompt on first run
+let CAP_BASE = 'https://demo-api-capital.backend-capital.com';
+let CAP_KEY  = '';
+let CAP_CST  = '';
+let CAP_XST  = '';
+let CAP_ID   = '';
+let CAP_PW   = '';
+let sessionRefreshTimer = null;
 
-// Candle shape: { time, open, high, low, close }
+// ── Create session → returns { cst, xst } ─────────────────────
+async function createSession() {
+  const r = await fetch(`${CAP_BASE}/api/v1/session`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-CAP-API-KEY': CAP_KEY },
+    body: JSON.stringify({ identifier: CAP_ID, password: CAP_PW, encryptedPassword: false }),
+  });
+  if (!r.ok) {
+    const err = await r.json().catch(() => ({}));
+    throw new Error(err.errorCode || err.message || 'Session failed: ' + r.status);
+  }
+  // CST and X-SECURITY-TOKEN come back in response HEADERS
+  CAP_CST = r.headers.get('CST') || '';
+  CAP_XST = r.headers.get('X-SECURITY-TOKEN') || '';
+  if (!CAP_CST) throw new Error('No CST in response — check credentials');
+  return { cst: CAP_CST, xst: CAP_XST };
+}
+
+// ── Login handler ──────────────────────────────────────────────
+async function doLogin() {
+  const btn = document.getElementById('login-btn');
+  const err = document.getElementById('login-err');
+  err.style.display = 'none';
+
+  CAP_KEY = document.getElementById('login-key').value.trim();
+  CAP_ID  = document.getElementById('login-id').value.trim();
+  CAP_PW  = document.getElementById('login-pw').value;
+  const env = document.getElementById('login-env').value;
+  CAP_BASE = env === 'live'
+    ? 'https://api-capital.backend-capital.com'
+    : 'https://demo-api-capital.backend-capital.com';
+
+  if (!CAP_KEY || !CAP_ID || !CAP_PW) {
+    err.textContent = 'Please fill in all fields.';
+    err.style.display = 'block'; return;
+  }
+  btn.disabled = true; btn.textContent = 'CONNECTING...';
+
+  try {
+    await createSession();
+    // Auto-refresh session every 9 minutes
+    clearInterval(sessionRefreshTimer);
+    sessionRefreshTimer = setInterval(createSession, 9 * 60 * 1000);
+
+    document.getElementById('login-screen').classList.add('hidden');
+    document.getElementById('loading').classList.remove('hidden');
+    renderTFBar();
+    await init();
+  } catch(e) {
+    err.textContent = '⚠ ' + e.message;
+    err.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'CONNECT →';
+  }
+}
+
+// ── Demo mode (no credentials) ─────────────────────────────────
+function launchDemo() {
+  CAP_KEY = ''; CAP_CST = ''; CAP_XST = '';
+  document.getElementById('login-screen').classList.add('hidden');
+  document.getElementById('loading').classList.remove('hidden');
+  renderTFBar();
+  init();
+}
+
+// ── Candle fetch (falls back to demo data if no session) ───────
 async function fetchCandles(pair, resolution = 'HOUR', max = 300) {
+  if (!CAP_CST) return generateDemoCandles();
   try {
     const r = await fetch(
       `${CAP_BASE}/api/v1/prices/${pair}?resolution=${resolution}&max=${max}&pageSize=${max}`,
       { headers: { 'X-CAP-API-KEY': CAP_KEY, 'CST': CAP_CST, 'X-SECURITY-TOKEN': CAP_XST } }
     );
+    if (r.status === 401) {
+      await createSession(); // auto re-auth on token expiry
+      return fetchCandles(pair, resolution, max);
+    }
     if (!r.ok) throw new Error('API ' + r.status);
-    const d = await r.json();
+    const d   = await r.json();
     const raw = d.prices || [];
     const seen = new Set();
     return raw.map(p => ({
@@ -383,7 +600,7 @@ async function fetchCandles(pair, resolution = 'HOUR', max = 300) {
     }))
     .filter(c => c.time > 0 && c.open > 0)
     .filter(c => { if (seen.has(c.time)) return false; seen.add(c.time); return true; })
-    .sort((a,b) => a.time - b.time);
+    .sort((a, b) => a.time - b.time);
   } catch(e) {
     console.warn('fetchCandles:', e.message);
     return generateDemoCandles();
@@ -391,9 +608,11 @@ async function fetchCandles(pair, resolution = 'HOUR', max = 300) {
 }
 
 async function fetchLivePrice(pair) {
+  if (!CAP_CST) return null;
   try {
     const r = await fetch(`${CAP_BASE}/api/v1/markets/${pair}`,
       { headers: { 'X-CAP-API-KEY': CAP_KEY, 'CST': CAP_CST, 'X-SECURITY-TOKEN': CAP_XST } });
+    if (r.status === 401) { await createSession(); return fetchLivePrice(pair); }
     if (!r.ok) throw new Error('API ' + r.status);
     const d = await r.json();
     return d.snapshot?.bid ?? null;
@@ -568,7 +787,6 @@ const S = {
 //  INIT
 // ════════════════════════════════════════════════════════════════
 async function init() {
-  renderTFBar();
   renderSessions();
   initChart();
   await loadCandles();
@@ -1168,7 +1386,8 @@ setInterval(renderSessions, 60000);
 // ════════════════════════════════════════════════════════════════
 window.addEventListener('load', () => {
   loadDrawings();
-  init();
+  // Show login screen first — init() is called after successful login
+  document.getElementById('loading').classList.add('hidden');
 });
 </script>
 </body>
